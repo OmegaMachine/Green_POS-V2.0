@@ -2,13 +2,11 @@
 	__New(InterfaceName){
 global
 		this._Name := InterfaceName
-		Gui,2: Add, Tab2, x2 y0 w1090 h590 vTabControl, Tab1|Tab2
-		Gui,2: Add, Text, x5 y100 w100 h30 vText1,heya
-		Gui,2: Show, w1100 h600 ,% this._Name
+this.createInterface()
 	}
 	_Authenticated := false
 	_authAs := 0
-	_Components := "TabControl"
+	_Components := ""
 	
 	
 	
@@ -35,13 +33,19 @@ global
 	}
 	
 
-HideInterface(){
-Gui,2:Hide
+destroyInterface(){
+Gui,2:Destroy
 return
 }
-ShowInterface(){
-Gui,2:Show
-return
+createInterface(){
+	global
+		Menu, AccountMenu, Add, &Login / Logout ,Logout
+		Menu, AccountMenu, Add, &Settings , Settings
+		Menu, MyMenuBar, Add, &Account, :AccountMenu
+		Gui,2: Menu, MyMenuBar
+		;Gui,2: Add, Tab2, x2 y0 w1090 h590 vTabControl, Tab1|Tab2
+		Gui,2: Color , 24201E
+		Gui,2: Show, w1100 h600 ,% this._Name
 }
 
 }

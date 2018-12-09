@@ -3,8 +3,7 @@
 global
 		this._Name := InterfaceName
 
-		Gui,3: +Parent2
-		Gui,3: Show, w300 h200 ,% this._Name
+
 	}
 	_Authenticated := false
 	_authAs := 0
@@ -12,12 +11,16 @@ global
 	
 
 
-HideInterface(){
-Gui,3:Hide
+destroyInterface(){
+Gui,3:Destroy
 return
 }
-ShowInterface(){
-Gui,3:Show
+createInterface(){
+	global
+
+		Gui,3: Add,Picture,w400 h150 x0 y0,%FOLDER_THEME%Red.PNG
+		Gui,3: +Parent2 +MaximizeBox
+		Gui,3: Show, w400 h150 ,% this._Name
 return
 }
 
