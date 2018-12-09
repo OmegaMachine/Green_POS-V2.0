@@ -69,5 +69,14 @@ if(this._EnableEncryption){
 }
 
 
+exist(){
+Filename := this._Folder . this._Name . ".DTB"
+	IfExist,%FileName%
+	{
+	return true	
+	}
+	return false
+}
+
 
 }
