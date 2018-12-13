@@ -1,0 +1,1 @@
+﻿Run,BlackBook.exe -update

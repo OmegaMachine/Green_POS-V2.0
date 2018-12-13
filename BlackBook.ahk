@@ -3,13 +3,14 @@
 #Include com\Variables.ahk
 for n, param in A_Args  ; For each parameter:
 {
+
     if(param = "update"){
-		If (A_ScriptName<>"BlackBook.exe")
+
 FileMove, BlackBook.exe, old.exe
  FileMove, %A_ScriptName%, BlackBook.exe
  FileDelete,old.exe
  Msgbox,Succesfully Updated to Version %PROGRAM_VERSION%
-	}
+}
 }
 #Include com\Startup.ahk
 return
