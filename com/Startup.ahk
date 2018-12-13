@@ -20,10 +20,10 @@ CURRENT_POS.DestroyAllInterfaces := Func("Destroy_All_Interfaces")
 
 ;Startup
 ;CURRENT_POS.TransactionDatabase.createTransaction("Startup")
-Q:=CURRENT_POS.TransactionDatabase.getTransaction(1)
-msgbox,% Q._Type
-Q:=CURRENT_POS.TransactionDatabase.getTransaction(2)
-msgbox,% Q._Type
+;Q:=CURRENT_POS.TransactionDatabase.getTransaction(1)
+;msgbox,% Q._Type
+;Q:=CURRENT_POS.TransactionDatabase.getTransaction(2)
+;msgbox,% Q._Type
 CURRENT_POS.Authenticator.requestAuthentication()
 
 
