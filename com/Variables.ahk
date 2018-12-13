@@ -6,10 +6,15 @@ MAIN_SIZEw := A_ScreenWidth
 MAIN_SIZEh := A_ScreenHeight-50
 ;Directorys
 FOLDER_ACCOUNTS := A_ScriptDir . "\data\Accounts\"
+FileCreateDir, %FOLDER_ACCOUNTS%
 FOLDER_MAIN := A_ScriptDir . "\data\Main\"
+FileCreateDir, %FOLDER_MAIN%
 FOLDER_ADMIN := A_ScriptDir . "\data\Admin\"
+FileCreateDir, %FOLDER_ADMIN%
 FOLDER_THEME := A_ScriptDir . "\data\Theme\"
+FileCreateDir, %FOLDER_THEME%
 FOLDER_TRANSACTIONS := A_ScriptDir . "\data\Transactions\"
+FileCreateDir, %FOLDER_TRANSACTIONS%
 ;GUI Names
 MAIN_GUI_NAME := "BlackBook"
 AUTH_GUI_NAME := "Authenticator"

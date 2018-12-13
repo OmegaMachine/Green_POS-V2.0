@@ -1,5 +1,14 @@
 ﻿#SingleInstance,Force
+
 #Include com\Variables.ahk
+for n, param in A_Args  ; For each parameter:
+{
+    if(param = "update"){
+		If (A_ScriptName<>"BlackBook.exe")
+FileMove, %A_ScriptDir%\BlackBook.exe, old.exe
+ FileMove, %A_ScriptName%, BlackBook.exe
+	}
+}
 #Include com\Startup.ahk
 return
 #Include com\Hotkeys.ahk
