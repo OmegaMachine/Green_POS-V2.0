@@ -47,11 +47,11 @@ ReadData(_dataName,_dataType,_default := "Null"){
 	}else{
 	IniRead, _data, %Filename%, %_dataType%, %_dataName%, %_default%
 }
-if(_data != _default){
+
 if(this._EnableEncryption){
 		_data:=this.decryptString(_data,this._EncryptionKey)
 	}
-}
+
 	Return _data	
 }
 

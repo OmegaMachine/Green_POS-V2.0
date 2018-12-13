@@ -60,7 +60,7 @@ nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu)
 DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-6,"Uint","0x400") 
 DllCall("DrawMenuBar","Int",hWnd) 
 		Gui,2: Add,text,w%MAIN_SIZEw% h%MAIN_SIZEh% x0 y0 +BackgroundTrans gFocusMain cRed vEText  ;Used to focus this gui
-		Gui,2: Show, w%MAIN_SIZEw% h%MAIN_SIZEh%  x0 y0,% this._Name . " - vv" . PROGRAM_VERSION 
+		Gui,2: Show, w%MAIN_SIZEw% h%MAIN_SIZEh%  x0 y0,% this._Name . " - v" . PROGRAM_VERSION 
 }
 
 }

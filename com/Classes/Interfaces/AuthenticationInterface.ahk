@@ -65,7 +65,7 @@ if(this._Creator){
 	Gui,3: Add, Button, x+m yp w90 h20 g_AttemptCreate, Create
 		Gui,3: Add, Text, x10 y+m w50 h20 +BackgroundTrans,PW(Again)
 		Gui,3: Add, Edit, x+M yp w130 h20 vLogin_Repeat +Password,
-		CURRENT_POS.Logger.Log("Message","Initializing a new BlackBook. Please create an administrative account.",MESSAGE_SEP)
+		CURRENT_POS.Logger.Log("Message","Initializing a new BlackBook. Please create an Investor account.",MESSAGE_SEP)
 	
 		
 }else{
@@ -108,26 +108,31 @@ attemptCreate(){
 	Gui,3: Submit,NoHide
 	if Login_Username is Not alnum
 	{
+		MsgBox, 0, Create New Investor, Failed. Invalid Name.
 	CURRENT_POS.Logger.Log("Message","....Failed. Username invalid.",MESSAGE_SEP)
 return	
 }
 	if Login_Username is space
 	{
+		MsgBox, 0, Create New Investor, Failed. Invalid Name.
 	CURRENT_POS.Logger.Log("Message","....Failed. Username invalid.",MESSAGE_SEP)
 return	
 }
 	if Login_Password is Not alnum
 	{
+		MsgBox, 0, Create New Investor, Failed. Invalid Password.
 	CURRENT_POS.Logger.Log("Message","....Failed. Password invalid.",MESSAGE_SEP)
 return	
 }
-	if Login_Username is space
+	if Login_Password is space
 	{
+		MsgBox, 0, Create New Investor, Failed. Invalid Password.
 	CURRENT_POS.Logger.Log("Message","....Failed. Password invalid.",MESSAGE_SEP)
 return	
 }
 	if (Login_Repeat != Login_Password)
 	{
+			MsgBox, 0, Create New Investor, Failed. Passwords do not match. 
 	CURRENT_POS.Logger.Log("Message","....Failed. Repeat Password does not match Password.",MESSAGE_SEP)
 return	
 }
@@ -136,16 +141,58 @@ return
 	Guicontrol,,Login_Password,
 	Guicontrol,,Login_Repeat,
 	this.createAdmin(Login_Username,Login_Password)
+	this._Creator:=false
 	this.requestAuthentication()
 	CURRENT_POS.Logger.Log("Message","....Success.",MESSAGE_SEP)
 	
 	;msgbox,% CURRENT_POS.Database.exist()
 	;this._Authenticated := true
 }
+attemptCreateCustom(_Name,PW,PWREPEAT){
+	global
+	CURRENT_POS.Logger.Log("Message","Attempting to create a new admin account....",MESSAGE_SEP)
+	Gui,3: Submit,NoHide
+	if _Name is Not alnum
+	{
+	CURRENT_POS.Logger.Log("Message","....Failed. Username invalid.",MESSAGE_SEP)
+return	
+}
+	if _Name is space
+	{
+	CURRENT_POS.Logger.Log("Message","....Failed. Username invalid.",MESSAGE_SEP)
+return	
+}
+	if PW is Not alnum
+	{
+	CURRENT_POS.Logger.Log("Message","....Failed. Password invalid.",MESSAGE_SEP)
+return	
+}
+	if PW is space
+	{
+	CURRENT_POS.Logger.Log("Message","....Failed. Password invalid.",MESSAGE_SEP)
+return	
+}
+	if (PWREPEAT != PW)
+	{
+	CURRENT_POS.Logger.Log("Message","....Failed. Repeat Password does not match Password.",MESSAGE_SEP)
+return	
+}
+
+	Guicontrol,,_Name,
+	Guicontrol,,PW,
+	Guicontrol,,PWREPEAT,
+	this.createAdmin(_Name,PW)
+	;this.requestAuthentication()
+	CURRENT_POS.Logger.Log("Message","....Success.",MESSAGE_SEP)
+MsgBox, 0, Create New Investor, Succesful!
+}
 
 createAdmin(VUsername,vPassword){
 	global
-	CURRENT_POS.AdminAccounts.WriteData(vPassword,"Password",vUsername)
+CURRENT_POS.AdminAccounts.WriteData(vPassword,"Password",vUsername)
+CURRENT_POS.AdminAccounts.WriteData(Get_InternetTime(),"JoinDate",vUsername)
+D:=_ListAddStart(CURRENT_POS.AdminAccounts.ReadData("Counter","Counter",false),vUsername)
+CURRENT_POS.AdminAccounts.WriteData(D,"Counter","Counter")
 }
 
 

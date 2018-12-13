@@ -1,1 +1,4 @@
-﻿Run,BlackBook.exe -update
+﻿t:=false
+if(t){
+msgbox,4	
+}

@@ -35,3 +35,6 @@ URLDownloadToFile,http://worldclockapi.com/api/json/est/now,Time.html
 	return X
 }
 
+clearField(Field){
+	GuiControl,,%Field%,
+}

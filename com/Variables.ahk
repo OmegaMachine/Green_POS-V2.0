@@ -9,8 +9,8 @@ FOLDER_ACCOUNTS := A_ScriptDir . "\data\Accounts\"
 FileCreateDir, %FOLDER_ACCOUNTS%
 FOLDER_MAIN := A_ScriptDir . "\data\Main\"
 FileCreateDir, %FOLDER_MAIN%
-FOLDER_ADMIN := A_ScriptDir . "\data\Admin\"
-FileCreateDir, %FOLDER_ADMIN%
+FOLDER_INVESTOR := A_ScriptDir . "\data\INVESTOR\"
+FileCreateDir, %FOLDER_INVESTOR%
 FOLDER_THEME := A_ScriptDir . "\data\Theme\"
 FileCreateDir, %FOLDER_THEME%
 FOLDER_TRANSACTIONS := A_ScriptDir . "\data\Transactions\"
