@@ -4,6 +4,9 @@ ExitApp
 return
 3GuiClose:
 CURRENT_POS.Authenticator.destroyInterface()
+if(FORCE_AUTHENTICATION){
+CURRENT_POS.Authenticator.requestAuthentication()
+}
 return
 6GuiSize:
 Gui,6:Default
@@ -52,6 +55,14 @@ CURRENT_POS.Authenticator.requestAuthentication()
 return
 MODULE_LOGGER:
 	CURRENT_POS.Logger.openInterface()
+return
+MODULE_MEMO:
+if(CURRENT_POS.Authenticator.Authenticated()){
+	CURRENT_POS.Memos.openInterface()
+}else{
+	CURRENT_POS.Logger.Log("Error","Please Authenticate First",MESSAGE_SEP)
+CURRENT_POS.Authenticator.requestAuthentication()
+}
 return
 MODULE_SALES:
 if(CURRENT_POS.Authenticator.Authenticated()){

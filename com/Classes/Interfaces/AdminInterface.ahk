@@ -20,7 +20,7 @@ openInterface(){
 	global
 this.destroyInterface()
 		Menu, tray, Icon , %FOLDER_THEME%Main_Icon.ico, 1, 1
-		Gui,4: Color , %AUTH_GUI_COLOR%
+		Gui,4: Color , %OTHER_GUI_COLOR%
 		Gui,4:    +LastFound +MaximizeBox ;+ToolWindow
 		AuthH := WinExist()
 		Gui,2: +Lastfound

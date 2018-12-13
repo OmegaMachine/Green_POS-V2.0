@@ -15,7 +15,7 @@ openInterface(){
 	global
 this.destroyInterface()
 		Menu, tray, Icon , %FOLDER_THEME%Main_Icon.ico, 1, 1
-		Gui,10: Color , %AUTH_GUI_COLOR%
+		Gui,10: Color , %OTHER_GUI_COLOR%
 		Gui,10: +MaximizeBox ;+ToolWindow
 		
 		

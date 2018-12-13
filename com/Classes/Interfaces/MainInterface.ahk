@@ -35,6 +35,8 @@ createInterface(){
 		Menu, ModulesMenu, Add
 		Menu, ModulesMenu, Add, &Transaction Explorer,MODULE_TRANSACTIONS
 		Menu, ModulesMenu, Add
+		Menu, ModulesMenu, Add, &Memo Explorer,MODULE_MEMO
+		Menu, ModulesMenu, Add
 		Menu, ModulesMenu, Add, &Admin Tools ,MODULE_ADMIN
 		Menu, MyMenuBar, Add, &Programs, :ModulesMenu
 		
@@ -50,9 +52,14 @@ createInterface(){
 		;Gui,2: Add, Tab2, x2 y0 w1090 h590 vTabControl, Tab1|Tab2
 		Gui,2: Color , %MAIN_GUI_COLOR%
 		;Gui,2: Add, StatusBar,,
-		Gui,2:    -MinimizeBox
-		Gui,2: Add,text,w1100 h600 x0 y0 +BackgroundTrans gFocusMain cRed vEText  ;Used to focus this gui
-		Gui,2: Show, w1100 h600 ,% this._Name
+		Gui,2:    -MinimizeBox +LastFound
+		hWnd := WinExist()
+hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
+nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu) 
+DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-6,"Uint","0x400") 
+DllCall("DrawMenuBar","Int",hWnd) 
+		Gui,2: Add,text,w%MAIN_SIZEw% h%MAIN_SIZEh% x0 y0 +BackgroundTrans gFocusMain cRed vEText  ;Used to focus this gui
+		Gui,2: Show, w%MAIN_SIZEw% h%MAIN_SIZEh%  x0 y0,% this._Name
 }
 
 }

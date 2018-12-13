@@ -9,3 +9,4 @@
 #Include com\Classes\Interfaces\TransactionInterface.ahk ;9
 #Include com\Classes\Interfaces\VentureInterface.ahk ;10
 #Include com\Classes\Interfaces\SettingsInterface.ahk ;11
+#Include com\Classes\Interfaces\MemoInterface.ahk ;11

@@ -13,6 +13,7 @@ CURRENT_POS.Products := New ProductInterface(PRODUCTS_GUI_NAME)
 CURRENT_POS.Ventures := New VentureInterface(VENTURES_GUI_NAME)
 CURRENT_POS.Transactions := New TransactionInterface(TRANSACTIONS_GUI_NAME)
 CURRENT_POS.Settings := New SettingsInterface(SETTINGS_GUI_NAME)
+CURRENT_POS.Memos := New MemoInterface(MEMO_GUI_NAME)
 ;Functions
 CURRENT_POS.DestroyAllInterfaces := Func("Destroy_All_Interfaces")
 

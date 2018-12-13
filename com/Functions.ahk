@@ -15,6 +15,7 @@ Destroy_All_Interfaces(this){
 	CURRENT_POS.Products.destroyInterface()
 	CURRENT_POS.Transactions.destroyInterface()
 	CURRENT_POS.Settings.destroyInterface()
+	CURRENT_POS.Memos.destroyInterface()
 	return
 }
 
