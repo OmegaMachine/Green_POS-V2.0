@@ -1,11 +1,12 @@
 CURRENT_POS := {}
 ;Databases
 CURRENT_POS.Database := New Database("Main",FOLDER_MAIN,true,true,ENCRYPTION_KEY)
+CURRENT_POS.TransactionDatabase := New TransactionDatabase("Main",FOLDER_TRANSACTIONS,false,false,ENCRYPTION_KEY)
 CURRENT_POS.AdminAccounts := New Database("Admin",FOLDER_ADMIN,true,true,ENCRYPTION_KEY)
 ;Interfaces
 CURRENT_POS.Main := New MainInterface(MAIN_GUI_NAME)
 CURRENT_POS.Authenticator := New AuthenticationInterface(AUTH_GUI_NAME)
-CURRENT_POS.Admin := New AdminInterface(ADMIN_GUI_NAME)
+CURRENT_POS.Investors := New InvestorInterface(INVESTOR_GUI_NAME)
 CURRENT_POS.Clients := New ClientInterface(CLIENTS_GUI_NAME)
 CURRENT_POS.Logger := New LoggerInterface(LOGGER_GUI_NAME)
 CURRENT_POS.Sales := New SalesInterface(SALES_GUI_NAME)
@@ -18,7 +19,11 @@ CURRENT_POS.Memos := New MemoInterface(MEMO_GUI_NAME)
 CURRENT_POS.DestroyAllInterfaces := Func("Destroy_All_Interfaces")
 
 ;Startup
-
+;CURRENT_POS.TransactionDatabase.createTransaction("Startup")
+Q:=CURRENT_POS.TransactionDatabase.getTransaction(1)
+msgbox,% Q._Type
+Q:=CURRENT_POS.TransactionDatabase.getTransaction(2)
+msgbox,% Q._Type
 CURRENT_POS.Authenticator.requestAuthentication()
 
 

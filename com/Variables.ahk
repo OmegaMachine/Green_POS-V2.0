@@ -7,13 +7,14 @@ FOLDER_ACCOUNTS := A_ScriptDir . "\data\Accounts\"
 FOLDER_MAIN := A_ScriptDir . "\data\Main\"
 FOLDER_ADMIN := A_ScriptDir . "\data\Admin\"
 FOLDER_THEME := A_ScriptDir . "\data\Theme\"
+FOLDER_TRANSACTIONS := A_ScriptDir . "\data\Transactions\"
 ;GUI Names
 MAIN_GUI_NAME := "BlackBook"
 AUTH_GUI_NAME := "Authenticator"
 LOGGER_GUI_NAME := "Logger"
 SALES_GUI_NAME := "Process Sales"
 CLIENTS_GUI_NAME := "Client Explorer"
-ADMIN_GUI_NAME := "Admin Tools"
+INVESTOR_GUI_NAME := "Investor Tools"
 PRODUCTS_GUI_NAME := "Product Explorer"
 TRANSACTIONS_GUI_NAME := "Transaction Explorer"
 VENTURES_GUI_NAME := "Venture Explorer"
@@ -27,9 +28,10 @@ GUI_COLOR3 := "212227"
 GUI_COLOR4 := "648381"
 GUI_COLOR5 := "134552"
 GUI_COLOR6 := "27CFF4"
+GUI_COLOR7 := "e5e5e5"
 MAIN_GUI_COLOR := GUI_COLOR0
 AUTH_GUI_COLOR := GUI_COLOR4
-OTHER_GUI_COLOR := GUI_COLOR6
+OTHER_GUI_COLOR := GUI_COLOR7
 LOGGER_GUI_COLOR := GUI_COLOR0
 
 ;Layout Vars

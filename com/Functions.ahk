@@ -9,7 +9,7 @@ GuiControl,,LoggerText,
 Destroy_All_Interfaces(this){
 	global
 	CURRENT_POS.Clients.destroyInterface()
-	CURRENT_POS.Admin.destroyInterface()
+	CURRENT_POS.Investors.destroyInterface()
 	CURRENT_POS.Sales.destroyInterface()
 	CURRENT_POS.Ventures.destroyInterface()
 	CURRENT_POS.Products.destroyInterface()

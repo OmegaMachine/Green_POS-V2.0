@@ -37,7 +37,7 @@ createInterface(){
 		Menu, ModulesMenu, Add
 		Menu, ModulesMenu, Add, &Memo Explorer,MODULE_MEMO
 		Menu, ModulesMenu, Add
-		Menu, ModulesMenu, Add, &Admin Tools ,MODULE_ADMIN
+		Menu, ModulesMenu, Add, &Investor Tools ,MODULE_INVESTORS
 		Menu, MyMenuBar, Add, &Programs, :ModulesMenu
 		
 		Menu, ELog, Add, &Open Logger,MODULE_LOGGER
@@ -54,6 +54,7 @@ createInterface(){
 		;Gui,2: Add, StatusBar,,
 		Gui,2:    -MinimizeBox +LastFound
 		hWnd := WinExist()
+		MainH := WinExist()
 hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
 nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu) 
 DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-6,"Uint","0x400") 

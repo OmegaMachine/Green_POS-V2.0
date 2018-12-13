@@ -45,9 +45,9 @@ CURRENT_POS.Clients.openInterface()
 	CURRENT_POS.Authenticator.requestAuthentication()
 }
 return
-MODULE_ADMIN:
+MODULE_INVESTORS:
 if(CURRENT_POS.Authenticator.Authenticated()){
-	CURRENT_POS.Admin.openInterface()
+	CURRENT_POS.Investors.openInterface()
 }else{
 	CURRENT_POS.Logger.Log("Error","Please Authenticate First",MESSAGE_SEP)
 CURRENT_POS.Authenticator.requestAuthentication()
