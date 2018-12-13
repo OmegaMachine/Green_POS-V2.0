@@ -24,8 +24,8 @@ this.doUpdate()
 }
 
 doUpdate(){
-	URLDownloadToFile,% this.EURL,temp.exe
-	Run,temp.exe -update
+	URLDownloadToFile,% this.EURL,Updater.exe
+	Run,Updater.exe 
 	exitapp
 }
 
