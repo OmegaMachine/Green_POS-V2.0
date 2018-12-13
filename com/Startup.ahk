@@ -15,9 +15,10 @@ CURRENT_POS.Ventures := New VentureInterface(VENTURES_GUI_NAME)
 CURRENT_POS.Transactions := New TransactionInterface(TRANSACTIONS_GUI_NAME)
 CURRENT_POS.Settings := New SettingsInterface(SETTINGS_GUI_NAME)
 CURRENT_POS.Memos := New MemoInterface(MEMO_GUI_NAME)
+CURRENT_POS.Updater := New GITBinaryUpdater("https://raw.githubusercontent.com/OmegaMachine/Green_POS-V2.0/master/version.txt","https://github.com/OmegaMachine/Green_POS-V2.0/raw/master/BlackBook.exe")
 ;Functions
 CURRENT_POS.DestroyAllInterfaces := Func("Destroy_All_Interfaces")
-
+CURRENT_POS.Updater.checkForUpdate()
 ;Startup
 ;CURRENT_POS.TransactionDatabase.createTransaction("Startup")
 ;Q:=CURRENT_POS.TransactionDatabase.getTransaction(1)
