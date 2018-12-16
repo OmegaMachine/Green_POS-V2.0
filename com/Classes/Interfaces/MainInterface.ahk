@@ -28,6 +28,7 @@ createInterface(){
 		Menu, AccountMenu, Add, &Settings , Settings
 		Menu, MyMenuBar, Add, &Account, :AccountMenu
 		
+		Menu, ModulesMenu, Add, &Investor Explorer ,MODULE_INVESTORS
 		Menu, ModulesMenu, Add, &Client Explorer,MODULE_CLIENT
 		Menu, ModulesMenu, Add, &Product Explorer,MODULE_PRODUCTS
 		Menu, ModulesMenu, Add, &Venture Explorer,MODULE_VENTURES
@@ -36,8 +37,7 @@ createInterface(){
 		Menu, ModulesMenu, Add, &Transaction Explorer,MODULE_TRANSACTIONS
 		Menu, ModulesMenu, Add
 		Menu, ModulesMenu, Add, &Memo Explorer,MODULE_MEMO
-		Menu, ModulesMenu, Add
-		Menu, ModulesMenu, Add, &Investor Tools ,MODULE_INVESTORS
+		
 		Menu, MyMenuBar, Add, &Programs, :ModulesMenu
 		
 		Menu, ELog, Add, &Open Logger,MODULE_LOGGER

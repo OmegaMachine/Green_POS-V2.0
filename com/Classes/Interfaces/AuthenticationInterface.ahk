@@ -32,6 +32,9 @@ global
 	CURRENT_POS.DestroyAllInterfaces()
 	CURRENT_POS.Logger.Clear()
 	CURRENT_POS.Logger.Log("Message","Logged Out Admin >" . Name . "<",MESSAGE_SEP)
+	if(TRANSACT_SESSIONS){
+CURRENT_POS.TransactionDatabase.createTransaction("Session","Ended",,Name)
+}
 }
 requestAuthentication(){
 	global
@@ -93,6 +96,7 @@ this.authenticateAdmin(Login_Username)
 CURRENT_POS.Logger.Clear()
 
 CURRENT_POS.Logger.Log("Session","Authentication Succesful. New Session As: >" . Login_Username . "<",MESSAGE_SEP)
+
 }
 authenticateAdmin(VUsername){
 	global
@@ -100,7 +104,9 @@ authenticateAdmin(VUsername){
 	this._authAs := VUsername
 	this.destroyInterface()
 	Menu, AccountMenu, Rename,&Login,&Logout - %VUsername%
-
+if(TRANSACT_SESSIONS){
+CURRENT_POS.TransactionDatabase.createTransaction("Session","Started",,VUsername)
+}
 }
 attemptCreate(){
 	global

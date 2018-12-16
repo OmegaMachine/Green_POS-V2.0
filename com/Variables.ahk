@@ -1,6 +1,7 @@
 PROGRAM_VERSION := "1.0.6"
 CHECK_FOR_UPDATES := true
 FORCE_AUTHENTICATION := true
+TRANSACT_SESSIONS := true
 ENCRYPTION_KEY := "wefgweg5t45334g3j98j894gt"
 MAIN_SIZEw := A_ScreenWidth
 MAIN_SIZEh := A_ScreenHeight-50
@@ -21,7 +22,7 @@ AUTH_GUI_NAME := "Authenticator"
 LOGGER_GUI_NAME := "Logger"
 SALES_GUI_NAME := "Process Sales"
 CLIENTS_GUI_NAME := "Client Explorer"
-INVESTOR_GUI_NAME := "Investor Tools"
+INVESTOR_GUI_NAME := "Investor Explorer"
 PRODUCTS_GUI_NAME := "Product Explorer"
 TRANSACTIONS_GUI_NAME := "Transaction Explorer"
 VENTURES_GUI_NAME := "Venture Explorer"

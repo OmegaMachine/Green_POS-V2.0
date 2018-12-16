@@ -25,7 +25,7 @@ Gui,4: Color , %OTHER_GUI_COLOR%
 Gui,4:    +LastFound +MaximizeBox +Owner2 
 AuthH := WinExist()
 Gui,4: Font, S14 CDefault Bold Underline, Verdana
-Gui,4: Add, Text, x0 y0 w630 h25 +BackgroundTrans +Center, Investors
+Gui,4: Add, Text, x0 y0 w630 h25 +BackgroundTrans +Center, % this._Name
 Gui,4: Font, , 
 Gui,4: Font, Bold, Verdana
 Gui,4: Add, GroupBox, x12 y40 w600 h300 , Modify Investor

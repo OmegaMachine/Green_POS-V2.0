@@ -22,7 +22,8 @@ if(CHECK_FOR_UPDATES){
 CURRENT_POS.Updater.checkForUpdate()
 }
 ;Startup
-;CURRENT_POS.TransactionDatabase.createTransaction("Startup")
+;createTransaction(_Type,_SubType := "-",_Venture := "-",_Account := "-",_Product := "-",_Quantity := "-",_Unit := "-",_Total := "-",_NewVenture := "-",_NewBlackBook := "-",_Memo := "-")
+;CURRENT_POS.TransactionDatabase.createTransaction(_Type,_SubType := "-",_Venture := "-",_Account := "-",_Product := "-",_Quantity := "-",_Unit := "-",_Total := "-",_NewVenture := "-",_NewBlackBook := "-",_Memo := "-")
 ;Q:=CURRENT_POS.TransactionDatabase.getTransaction(1)
 ;msgbox,% Q._Type
 ;Q:=CURRENT_POS.TransactionDatabase.getTransaction(2)

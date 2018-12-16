@@ -1,5 +1,6 @@
 ExitProgram:
 2GuiClose:
+CURRENT_POS.Authenticator.requestAuthentication()
 ExitApp
 return
 3GuiClose:

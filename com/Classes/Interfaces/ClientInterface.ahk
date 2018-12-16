@@ -20,7 +20,7 @@ Gui,5:    +LastFound +MaximizeBox +Owner2
 AuthH := WinExist()
 
 Gui, 5: Font, S14 CDefault Bold Underline, Verdana
-Gui, 5: Add, Text, x2 y0 w660 h30 +BackgroundTrans +Center, Client Explorer
+Gui, 5: Add, Text, x2 y0 w660 h30 +BackgroundTrans +Center, % this._Name
 
 Gui, 5: Font, , 
 Gui, 5: Font, Bold, 
@@ -35,7 +35,7 @@ Gui, 5: Font, Bold,
 Gui, 5: Add, GroupBox, x162 y300 w130 h100 , New Client
 Gui, 5: Font, , 
 Gui, 5: Add, Text, x172 y320 w110 h20 +Center +BackgroundTrans, Client Name
-Gui, 5: Add, Edit, x172 y340 w110 h20 +Center, Edit
+Gui, 5: Add, Edit, x172 y340 w110 h20 +Center, 
 Gui, 5: Add, Button, x188 y365 w80 h20 , Create
 
 Gui, 5: Font, Bold, 
@@ -56,7 +56,7 @@ Gui, 5: Font, Bold,
 Gui, 5: Add, GroupBox, x312 y140 w320 h50 , Manually Add Debt
 Gui, 5: Font, , 
 Gui, 5: Add, Text, x322 y160 w100 h20 , Debt to Add
-Gui, 5: Add, Edit, x402 y160 w110 h20 , Edit
+Gui, 5: Add, Edit, x402 y160 w110 h20 , 
 Gui, 5: Add, Button, x522 y160 w100 h20 , Add
 
 
@@ -64,14 +64,14 @@ Gui, 5: Font, Bold,
 Gui, 5: Add, GroupBox, x312 y200 w320 h50 , Void Debt (no impact on books)
 Gui, 5: Font, , 
 Gui, 5: Add, Text, x322 y220 w100 h20 , Debt to Void
-Gui, 5: Add, Edit, x402 y220 w110 h20 , Edit
+Gui, 5: Add, Edit, x402 y220 w110 h20 , 
 Gui, 5: Add, Button, x522 y220 w100 h20 , Void
 
 Gui, 5: Font, Bold, 
 Gui, 5: Add, GroupBox, x312 y260 w320 h50 , Pay Debt (impacts books)
 Gui, 5: Font, , 
 Gui, 5: Add, Text, x322 y280 w100 h20 , Debt to Pay
-Gui, 5: Add, Edit, x402 y280 w110 h20 , Edit
+Gui, 5: Add, Edit, x402 y280 w110 h20 , 
 Gui, 5: Add, Button, x522 y280 w100 h20 , Pay
 
 

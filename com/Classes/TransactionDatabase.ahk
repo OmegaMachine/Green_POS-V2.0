@@ -86,24 +86,34 @@ getFreeTransactionSlot(){
 	}
 	}
 }
-createTransaction(_Type){
+createTransaction(_Type,_SubType := "-",_Venture := "-",_Account := "-",_Product := "-",_Quantity := "-",_Unit := "-",_Total := "-",_Memo := "-"){
 	global
-	FreeSlot:=this.getFreeTransactionSlot()
+	FreeSlotd:=this.getFreeTransactionSlot()
 	_Date := Get_InternetTime()
-	Transaction:=_Type . "|" . _Date
-	this.WriteData(Transaction,FreeSlot,"Transaction")
+	if(_Total != "-"){
+	_NewBlackBook := "000"	
+	}else{
+	_NewBlackBook := "-"	;newblackbook value
+}
+	if(_Venture != "-"){
+	_NewVenture := "000"	
+	}else{
+	_NewVenture := "-" ;newventure value	
+}
+	
+	
+	Transactionf:=_Type . "|" . _Date . "|" . _SubType . "|" . _Venture . "|" . _Account . "|" . _Product . "|" . _Quantity . "|" . _Unit . "|" . _Total . "|" . _NewVenture . "|" . _NewBlackBook . "|" . _Memo
+	this.WriteData(Transactionf,FreeSlotd,"Transaction")
 }
 getTransaction(IDX){
 	global
-	Z:=this.ReadData(IDX,"Transaction","Null")
-	msgbox,% Z
-	if(Z="Null"){
+	ZS:=this.ReadData(IDX,"Transaction","Null")
+	if(ZS="Null"){
 		return false
 	}
-	StringSplit,Parts,Z,|
-	ZZ:= new Transaction(Parts1,Parts2)
-	msgbox,% ZZ._Type
-	return ZZ
+	StringSplit,Parts,ZS,|
+	ZZS:= new Transaction(Parts1,Parts2,Parts3,Parts4,Parts5,Parts6,Parts7,Parts8,Parts9,Parts10,Parts11,Parts12)
+	return ZZS
 }
 ifSlotIsType(Slot){
 	
