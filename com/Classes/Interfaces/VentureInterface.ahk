@@ -5,7 +5,7 @@ global
 		StringReplace,InterfaceName,InterfaceName,%A_Space%,_,All
 		this._Name := InterfaceName
 		this._Folder :=  A_ScriptDir . "\data\" . "Ventures" . "\"
-		this._Database := New Database("Ventures",this._Folder,true,true,ENCRYPTION_KEY)
+		this._Database := New Database("Ventures",this._Folder,false,false,ENCRYPTION_KEY)
 
 	}
 
@@ -113,6 +113,24 @@ return
 }
 
 ;;;;;CLIENTS
+createClient(Venture_Name,Client_Name,Entry_Details := ""){
+	global
+	this._Database.WriteData(Get_InternetTime(),"CreateDate",Venture_Name . "-" . Client_Name)
+	
+	Loop,Parse,Entry_Details,|
+	{
+		StringSplit,Entry_Piece,A_LoopField,:
+		this._Database.WriteData(Entry_Piece2,Entry_Piece1,Venture_Name . "-" . Client_Name)
+	}
+this.addClientToCounter(Venture_Name,Client_Name)
+CURRENT_POS.TransactionDatabase.createTransaction("Client","Created",Venture_Name,Client_Name)
+CURRENT_POS.Clients.openInterface()
+}
+addClientToCounter(Venture_Name,Client_Name){
+	global
+	D:=_ListAddStart(this._Database.ReadData("Client_Counter",Venture_Name,false),Client_Name)
+this._Database.WriteData(D,"Client_Counter",Venture_Name)
+}
 getAllClients(Venture_Name){
 	global
 	s:=this._Database.ReadData("Client_Counter",Venture_Name,false)
@@ -120,6 +138,45 @@ getAllClients(Venture_Name){
 		return s
 	}
 return 	""
+}
+getClientStat(StatName,Venture_Name,Client_Name,zDefault := 0){
+	global
+return this._Database.ReadData(StatName,Venture_Name . "-" . Client_Name)
+}
+setClientStat(StatName,Venture_Name,Client_Name,xData){
+	global
+	this._Database.WriteData(xData,StatName,Venture_Name . "-" . Client_Name)
+return
+}
+
+
+
+
+
+
+
+
+
+
+
+;;;;PRODUCTS
+createProduct(Venture_Name,Product_Name,Entry_Details := ""){
+	global
+	this._Database.WriteData(Get_InternetTime(),"CreateDate",Venture_Name . "-" . Product_Name)
+	
+	Loop,Parse,Entry_Details,|
+	{
+		StringSplit,Entry_Piece,A_LoopField,:
+		this._Database.WriteData(Entry_Piece2,Entry_Piece1,Venture_Name . "-" . Product_Name)
+	}
+this.addProductToCounter(Venture_Name,Product_Name)
+CURRENT_POS.TransactionDatabase.createTransaction("Product","Created",Venture_Name,Product_Name)
+CURRENT_POS.Products.openInterface()
+}
+addProductToCounter(Venture_Name,Product_Name){
+	global
+	D:=_ListAddStart(this._Database.ReadData("Product_Counter",Venture_Name,false),Product_Name)
+this._Database.WriteData(D,"Product_Counter",Venture_Name)
 }
 getAllProducts(Venture_Name){
 	global
@@ -129,4 +186,14 @@ getAllProducts(Venture_Name){
 	}
 return 	""
 }
+getProductStat(StatName,Venture_Name,Product_Name,zDefault := 0){
+	global
+return this._Database.ReadData(StatName,Venture_Name . "-" . Product_Name)
+}
+setProductStat(StatName,Venture_Name,Product_Name,xData){
+	global
+	this._Database.WriteData(xData,StatName,Venture_Name . "-" . Product_Name)
+return
+}
+
 }

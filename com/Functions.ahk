@@ -54,3 +54,14 @@ global
 GoSub,ExitProgram
 return
 }
+AllowableText(XText){
+	;if XText is Not alnum
+	;{
+	;	return 0
+;}
+	if XText is space
+	{
+return 0	
+}
+return 1
+}

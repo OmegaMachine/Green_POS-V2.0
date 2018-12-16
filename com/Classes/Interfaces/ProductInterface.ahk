@@ -22,13 +22,13 @@ Gui, 7:Font, S14 CDefault Bold Underline, Verdana
 Gui, 7:Add, Text, x2 y0 w810 h30 +BackgroundTrans +Center, Product Explorer
 Gui, 7:Font, , 
 Gui, 7:Font, Bold, 
-Gui, 7:Add, GroupBox, x12 y40 w790 h460 , GroupBox
+Gui, 7:Add, GroupBox, x12 y40 w790 h460 , Select Venture
 Gui, 7:Font, , 
-Gui, 7:Add, ListBox, x22 y80 w130 h210 ,% CURRENT_POS.Ventures.getAllEntrys()
+Gui, 7:Add, ListBox, x22 y80 w130 h210 vPRODUCT_VENTUREBOX gPRODUCTSELECT_VENTURE,% CURRENT_POS.Ventures.getAllEntrys()
 Gui, 7:Font, Bold, 
 Gui, 7:Add, Text, x22 y60 w120 h20 +Center, Venture
 Gui, 7:Font, , 
-Gui, 7:Add, ListBox, x162 y80 w130 h199 , 
+Gui, 7:Add, ListBox, x162 y80 w130 h199 vPRODUCT_PRODUCTBOX, 
 Gui, 7:Font, Bold, 
 Gui, 7:Add, Text, x162 y60 w120 h20 +Center, Product
 Gui, 7:Font, , 
@@ -37,8 +37,8 @@ Gui, 7:Font, Bold,
 Gui, 7:Add, GroupBox, x162 y280 w130 h90 , New Product
 Gui, 7:Font, , 
 Gui, 7:Add, Text, x172 y300 w110 h20 +Center, Product Name
-Gui, 7:Add, Edit, x172 y320 w110 h20 , 
-Gui, 7:Add, Button, x172 y345 w110 h20 , Create
+Gui, 7:Add, Edit, x172 y320 w110 h20 vNEW_PRODUCT_NAME +Center,
+Gui, 7:Add, Button, x172 y345 w110 h20 gCREATE_NEW_PRODUCT, Create
 Gui, 7:Font, Bold, 
 Gui, 7:Add, GroupBox, x302 y60 w490 h430 , Product Options
 Gui, 7:Font, S12, 
