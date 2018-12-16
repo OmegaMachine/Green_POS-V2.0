@@ -25,7 +25,7 @@ Gui, 10: Font, ,
 Gui, 10: Font, Bold, 
 Gui, 10: Add, GroupBox, x12 y30 w590 h400 , Select Venture
 Gui, 10: Font, , 
-Gui, 10: Add, ListBox, x22 y50 w570 h100 , ListBox
+Gui, 10: Add, ListBox, x22 y50 w570 h100 ,% CURRENT_POS.Ventures.getAllVentures()
 Gui, 10: Font, S12 Bold Underline, 
 Gui, 10: Add, Text, x32 y150 w550 h20 +Center +BackgroundTrans, general
 Gui, 10: Font, , 
@@ -53,14 +53,41 @@ Gui, 10: Add, Button, x482 y320 w90 h20 , Disolve
 Gui, 10: Add, GroupBox, x32 y370 w550 h50 , New Venture
 Gui, 10: Font, , 
 Gui, 10: Add, Text, x272 y390 w70 h20 , Venture Name
-Gui, 10: Add, Edit, x362 y390 w100 h20 , Edit
-Gui, 10: Add, Button, x482 y390 w90 h20 , Create
+Gui, 10: Add, Edit, x362 y390 w100 h20 vNEW_VENTURE_NAME,
+Gui, 10: Add, Button, x482 y390 w90 h20 gCREATE_NEW_VENTURE, Create
 Gui, 10: Show, w616 h474,% this._Name
 	DllCall("SetParent", "uint", AuthH, "uint", MainH)
 return
 }
 
+createVenture(Name){
+	global
+	CURRENT_POS.VentureAccounts.WriteData(0,"Profit",Name)
+	CURRENT_POS.VentureAccounts.WriteData(Get_InternetTime(),"CreateDate",Name)
+D:=_ListAddStart(CURRENT_POS.VentureAccounts.ReadData("Counter","Counter",false),Name)
+CURRENT_POS.VentureAccounts.WriteData(D,"Counter","Counter")
+CURRENT_POS.TransactionDatabase.createTransaction("Venture","Created",,Name)
+this.openInterface()
+}
 
+getAllVentures(){
+	global
+	s:=CURRENT_POS.VentureAccounts.ReadData("Counter","Counter",false)
+	if(s){
+		return s
+	}
+return 	""
+}
+
+getVentureStat(StatName,VentureName,zDefault := 0){
+	global
+return CURRENT_POS.VentureAccounts.ReadData(StatName,VentureName,zDefault)
+}
+setVentureStat(StatName,VentureName,xData){
+	global
+	CURRENT_POS.VentureAccounts.WriteData(xData,StatName,VentureName)
+return
+}
 
 
 }

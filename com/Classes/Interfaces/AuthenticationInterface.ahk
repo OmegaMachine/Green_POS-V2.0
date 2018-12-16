@@ -19,7 +19,7 @@ return
 }
 Authenticated(){
 	if(this._Authenticated){
-		return true
+		return this._authAs
 	}
 	return false
 }

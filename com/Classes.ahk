@@ -7,6 +7,7 @@
 #Include com\Classes\Interfaces\AuthenticationInterface.ahk ;3
 #Include com\Classes\Interfaces\InvestorInterface.ahk ;4
 #Include com\Forms\InvestorForm.ahk ;4
+#Include com\Forms\VentureForm.ahk ;4
 #Include com\Classes\Interfaces\ClientInterface.ahk ;5
 #Include com\Classes\Interfaces\LoggerInterface.ahk ;6
 #Include com\Classes\Interfaces\ProductInterface.ahk ;7

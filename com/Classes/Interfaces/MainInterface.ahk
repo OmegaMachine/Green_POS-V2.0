@@ -42,6 +42,8 @@ createInterface(){
 		Menu, ModulesMenu, Add, &Transaction Explorer,MODULE_TRANSACTIONS
 		Menu, ModulesMenu, Add
 		Menu, ModulesMenu, Add, &Memo Explorer,MODULE_MEMO
+		Menu, ModulesMenu, Add
+		Menu, ModulesMenu, Add, &Add Memo To Next Transaction,MODULE_ADDMEMOTONEXT
 		
 		Menu, MyMenuBar, Add, &Programs, :ModulesMenu
 		

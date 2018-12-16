@@ -90,6 +90,7 @@ createTransaction(_Type,_SubType := "-",_Venture := "-",_Account := "-",_Product
 	global
 	FreeSlotd:=this.getFreeTransactionSlot()
 	_Date := Get_InternetTime()
+	_AUTH := CURRENT_POS.Authenticator.Authenticated()
 	if(_Total != "-"){
 	_NewBlackBook := "000"	
 	}else{
@@ -101,9 +102,23 @@ createTransaction(_Type,_SubType := "-",_Venture := "-",_Account := "-",_Product
 	_NewVenture := "-" ;newventure value	
 }
 	
+	if(MEMO_TO_ADD){
+		if(_Memo != "-"){
+		_Memo := _Memo . "`n`n-------AutoMemo-------`n" . MEMO_TO_ADD
+	}else{
+	_Memo := MEMO_TO_ADD	
+}
+	}
 	
-	Transactionf:=_Type . "|" . _Date . "|" . _SubType . "|" . _Venture . "|" . _Account . "|" . _Product . "|" . _Quantity . "|" . _Unit . "|" . _Total . "|" . _NewVenture . "|" . _NewBlackBook . "|" . _Memo
+	
+	Transactionf:=_Type . "|" . _Date . "|" . _SubType . "|" . _Venture . "|" . _Account . "|" . _Product . "|" . _Quantity . "|" . _Unit . "|" . _Total . "|" . _NewVenture . "|" . _NewBlackBook . "|" . _Memo . "|" . _AUTH
 	this.WriteData(Transactionf,FreeSlotd,"Transaction")
+	if(MEMO_TO_ADD){
+		MEMO_TO_ADD:=false
+		if(NOTIFY_MEMO_APPENDED){
+		MsgBox, 64, Memo Appended, Your memo has been appended to this transaction.
+	}
+	}
 }
 getTransaction(IDX){
 	global
@@ -112,7 +127,7 @@ getTransaction(IDX){
 		return false
 	}
 	StringSplit,Parts,ZS,|
-	ZZS:= new Transaction(Parts1,Parts2,Parts3,Parts4,Parts5,Parts6,Parts7,Parts8,Parts9,Parts10,Parts11,Parts12)
+	ZZS:= new Transaction(Parts1,Parts2,Parts3,Parts4,Parts5,Parts6,Parts7,Parts8,Parts9,Parts10,Parts11,Parts12,Parts13)
 	return ZZS
 }
 ifSlotIsType(Slot){

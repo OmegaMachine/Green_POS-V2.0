@@ -132,3 +132,36 @@ Gui,2: +LastFound
 MainX := WinExist()
 WinActivate,%MainX%
 return
+
+Radio1:
+if(!ALLOW_DEBT_TRANSACTIONS){
+	GuiControl,,CashDebt1,1
+	MsgBox, 16, Debt Transaction Disallowed, Debt transactions have been disallowed by the admin.
+	
+}
+return
+
+MODULE_ADDMEMOTONEXT:
+if(MEMO_TO_ADD){
+	MsgBox, 4, Overwrite Previous Memo, The previous memo has not been appended yet. Would you like to overwrite the memo?
+	IfMsgBox,Yes
+	{
+InputBox,MEMO_TO_ADD,Enter Memo,Enter the memo you would like appened to the next transaction. (Venture creation`, Client creation`, Processing Sales etc....)
+if(ErrorLevel){
+	MEMO_TO_ADD:=false
+	MsgBox, 64, Memo Not Appended, No Memo will be appended to the next transaction.
+}else{
+MsgBox, 64, Memo Will Be Appended, Your memo has overwritten the previous memo and will be appended to the next transaction.	
+}
+}
+
+}else{
+InputBox,MEMO_TO_ADD,Enter Memo,Enter the memo you would like appened to the next transaction. (Venture creation`, Client creation`, Processing Sales etc....)
+if(ErrorLevel){
+	MEMO_TO_ADD:=false
+	MsgBox, 64, Memo Not Appended, No Memo will be appended to the next transaction.
+}else{
+MsgBox, 64, Memo Will Be Appended, Your memo will be appended to the next transaction.	
+}
+}
+return

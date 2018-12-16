@@ -1,8 +1,11 @@
-PROGRAM_VERSION := "1.1.0"
+PROGRAM_VERSION := "1.1.1"
 CHECK_FOR_UPDATES := true
 USE_INTERNET_TIME := true
 FORCE_AUTHENTICATION := true
 TRANSACT_SESSIONS := true
+ALLOW_DEBT_TRANSACTIONS := true
+MEMO_TO_ADD := false
+NOTIFY_MEMO_APPENDED := true
 ENCRYPTION_KEY := "wefgweg5t45334g3j98j894gt"
 MAIN_SIZEw := A_ScreenWidth
 MAIN_SIZEh := A_ScreenHeight-50
@@ -17,6 +20,8 @@ FOLDER_THEME := A_ScriptDir . "\data\Theme\"
 FileCreateDir, %FOLDER_THEME%
 FOLDER_TRANSACTIONS := A_ScriptDir . "\data\Transactions\"
 FileCreateDir, %FOLDER_TRANSACTIONS%
+FOLDER_VENTURES := A_ScriptDir . "\data\Ventures\"
+FileCreateDir, %FOLDER_VENTURES%
 ;GUI Names
 MAIN_GUI_NAME := "BlackBook"
 AUTH_GUI_NAME := "Authenticator"
