@@ -24,6 +24,11 @@ return
 }
 createInterface(){
 	global
+	
+	Menu, Tray, NoStandard 
+	Menu, Tray, Add , &BlackBook, BlackBook
+	Menu, Tray, Add , &Exit, ExitProgram
+	
 		Menu, AccountMenu, Add, &Login,Logout
 		Menu, AccountMenu, Add, &Settings , Settings
 		Menu, MyMenuBar, Add, &Account, :AccountMenu

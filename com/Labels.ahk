@@ -124,7 +124,9 @@ CURRENT_POS.Authenticator.attemptCreate(CURRENT_POS.Database)
 return
 
 
-
+BlackBook:
+Gui,2: Show
+return
 FocusMain:
 Gui,2: +LastFound
 MainX := WinExist()

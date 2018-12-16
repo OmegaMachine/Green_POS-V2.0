@@ -1,3 +1,4 @@
+OnExit("ExitFunc")
 CURRENT_POS := {}
 ;Updater
 CURRENT_POS.Updater := New GITBinaryUpdater("https://raw.githubusercontent.com/OmegaMachine/Green_POS-V2.0/master/version.txt","https://github.com/OmegaMachine/Green_POS-V2.0/raw/master/BlackBook.exe")

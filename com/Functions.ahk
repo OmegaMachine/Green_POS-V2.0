@@ -46,3 +46,8 @@ X := Q1 . " - " . Q2
 clearField(Field){
 	GuiControl,,%Field%,
 }
+ExitFunc(){
+global
+GoSub,ExitProgram
+return
+}

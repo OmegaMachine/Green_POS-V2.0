@@ -199,6 +199,8 @@ CURRENT_POS.AdminAccounts.WriteData(vPassword,"Password",vUsername)
 CURRENT_POS.AdminAccounts.WriteData(Get_InternetTime(),"JoinDate",vUsername)
 D:=_ListAddStart(CURRENT_POS.AdminAccounts.ReadData("Counter","Counter",false),vUsername)
 CURRENT_POS.AdminAccounts.WriteData(D,"Counter","Counter")
+CURRENT_POS.TransactionDatabase.createTransaction("BlackBook","Initialized",,VUsername)
+CURRENT_POS.TransactionDatabase.createTransaction("Investor","Created",,VUsername)
 }
 
 
