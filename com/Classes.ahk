@@ -16,4 +16,5 @@
 #Include com\Classes\Interfaces\VentureInterface.ahk ;10
 #Include com\Classes\Interfaces\SettingsInterface.ahk ;11
 #Include com\Classes\Interfaces\MemoInterface.ahk ;11
+#Include com\Classes\Interfaces\MDIInterface.ahk ;11
 

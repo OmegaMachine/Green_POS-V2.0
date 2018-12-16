@@ -165,3 +165,7 @@ MsgBox, 64, Memo Will Be Appended, Your memo will be appended to the next transa
 }
 }
 return
+
+FORKGuiClose:
+CURRENT_POS.FORK.destroyInterface()
+return

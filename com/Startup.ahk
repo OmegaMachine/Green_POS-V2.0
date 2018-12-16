@@ -25,8 +25,8 @@ CURRENT_POS.Ventures := New VentureInterface(VENTURES_GUI_NAME)
 CURRENT_POS.Transactions := New TransactionInterface(TRANSACTIONS_GUI_NAME)
 CURRENT_POS.Settings := New SettingsInterface(SETTINGS_GUI_NAME)
 CURRENT_POS.Memos := New MemoInterface(MEMO_GUI_NAME)
-
-
+CURRENT_POS.FORK := New MDIInterface("FORK")
+CURRENT_POS.FORK.openInterface()
 
 ;Startup
 ;createTransaction(_Type,_SubType := "-",_Venture := "-",_Account := "-",_Product := "-",_Quantity := "-",_Unit := "-",_Total := "-",_NewVenture := "-",_NewBlackBook := "-",_Memo := "-")
