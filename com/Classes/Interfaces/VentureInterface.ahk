@@ -5,7 +5,7 @@ global
 		StringReplace,InterfaceName,InterfaceName,%A_Space%,_,All
 		this._Name := InterfaceName
 		this._Folder :=  A_ScriptDir . "\data\" . "Ventures" . "\"
-		this._Database := New Database("Ventures",this._Folder,true,true,ENCRYPTION_KEY)
+		this._Database := New Database("Ventures",this._Folder,false,false,ENCRYPTION_KEY)
 
 	}
 

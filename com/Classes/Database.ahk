@@ -4,7 +4,7 @@
 	this._Folder := databaseFolder
 	this._EnableEncryption := enableEncryption
 	this._EncryptionKey := encryptionKey
-	this._EncryptNames := true
+	this._EncryptNames := encryptNames
 	}
 	
 
