@@ -31,18 +31,26 @@ AuthH := WinExist()
 	DllCall("SetParent", "uint", AuthH, "uint", MainH)
 return
 }
-create(Name){
+createDatabaseEntry(Entry_Name,Entry_Details := ""){
 	global
-	;this._Database.WriteData(0,"Profit",Name)
-	this._Database.WriteData(Get_InternetTime(),"CreateDate",Name)
 	
-D:=_ListAddStart(this._Database.ReadData("Counter","Counter",false),Name)
-this._Database.WriteData(D,"Counter","Counter")
-CURRENT_POS.TransactionDatabase.createTransaction("Venture","Created",,Name)
+	this._Database.WriteData(Get_InternetTime(),"CreateDate",Entry_Name)
+	
+	Loop,Parse,Entry_Details,|
+	{
+		StringSplit,Entry_Piece,A_LoopField,:
+		this._Database.WriteData(Entry_Piece2,Entry_Piece1,Entry_Name)
+	}
+this.addEntryToCounter(Entry_Name)
+CURRENT_POS.TransactionDatabase.createTransaction("Venture","Created",,Entry_Name)
 this.openInterface()
 }
-
-getAll(){
+addEntryToCounter(Entry_Name){
+	global
+	D:=_ListAddStart(this._Database.ReadData("Counter","Counter",false),Entry_Name)
+this._Database.WriteData(D,"Counter","Counter")
+}
+getAllEntrys(){
 	global
 	s:=this._Database.ReadData("Counter","Counter",false)
 	if(s){
@@ -51,13 +59,13 @@ getAll(){
 return 	""
 }
 
-getStat(StatName,Name,zDefault := 0){
+getEntryStat(StatName,Entry_Name,zDefault := 0){
 	global
-return this._Database.ReadData(StatName,Name,zDefault)
+return this._Database.ReadData(StatName,Entry_Name,zDefault)
 }
-setStat(StatName,Name,xData){
+setEntryStat(StatName,Entry_Name,xData){
 	global
-	this._Database.WriteData(xData,StatName,Name)
+	this._Database.WriteData(xData,StatName,Entry_Name)
 return
 }
 }

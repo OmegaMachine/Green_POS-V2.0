@@ -9,7 +9,7 @@ CURRENT_POS.Updater.checkForUpdate()
 CURRENT_POS.Database := New Database("Main",FOLDER_MAIN,true,true,ENCRYPTION_KEY)
 CURRENT_POS.TransactionDatabase := New TransactionDatabase("Main",FOLDER_TRANSACTIONS,true,true,ENCRYPTION_KEY)
 CURRENT_POS.AdminAccounts := New Database("Admin",FOLDER_INVESTOR,true,true,ENCRYPTION_KEY)
-CURRENT_POS.VentureAccounts := New Database("Ventures",FOLDER_VENTURES,true,true,ENCRYPTION_KEY)
+;CURRENT_POS.VentureAccounts := New Database("Ventures",FOLDER_VENTURES,true,true,ENCRYPTION_KEY)
 ;Functions
 CURRENT_POS.DestroyAllInterfaces := Func("Destroy_All_Interfaces")
 CURRENT_POS.getName := Func("GetPosName")

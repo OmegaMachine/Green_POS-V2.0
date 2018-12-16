@@ -1,8 +1,11 @@
 ﻿Class VentureInterface{
 	__New(InterfaceName){
 global
+		this._UnmodifiedName := InterfaceName
+		StringReplace,InterfaceName,InterfaceName,%A_Space%,_,All
 		this._Name := InterfaceName
-
+		this._Folder :=  A_ScriptDir . "\data\" . "Ventures" . "\"
+		this._Database := New Database("Ventures",this._Folder,true,true,ENCRYPTION_KEY)
 
 	}
 
@@ -23,69 +26,89 @@ Gui, 10: Font, S14 CDefault Bold Underline, Verdana
 Gui, 10: Add, Text, x2 y0 w610 h30 +BackgroundTrans +Center, % this._Name
 Gui, 10: Font, , 
 Gui, 10: Font, Bold, 
+
 Gui, 10: Add, GroupBox, x12 y30 w590 h400 , Select Venture
 Gui, 10: Font, , 
-Gui, 10: Add, ListBox, x22 y50 w570 h100 ,% CURRENT_POS.Ventures.getAllVentures()
+Gui, 10: Add, ListBox, x22 y50 w570 h100 gSELECT_VENTURE vVenture_VentureBox,% this.getAllEntrys()
+
 Gui, 10: Font, S12 Bold Underline, 
-Gui, 10: Add, Text, x32 y150 w550 h20 +Center +BackgroundTrans, general
+Gui, 10: Add, Text, x32 y150 w550 h20 +Center +BackgroundTrans vVenture_VentureName,
+
 Gui, 10: Font, , 
 Gui, 10: Font, Bold, 
 Gui, 10: Add, GroupBox, x32 y170 w560 h190 , Details
+
+Gui, 10: Font, , 
+Gui, 10: Add, Text, x42 y190 w90 h20 , Creation Date
+Gui, 10: Add, Edit, x132 y190 w150 h20 +Center +ReadOnly vVenture_VentureCreation,
+Gui, 10: Add, Text, x42 y210 w90 h20 , Venture Profits
+Gui, 10: Add, Edit, x132 y210 w150 h20 +Center +ReadOnly vVenture_VentureProfits,
+
+Gui, 10: Font, Bold,
 Gui, 10: Add, Text, x462 y180 w120 h20 +Center +BackgroundTrans, Clients
 Gui, 10: Font, , 
 Gui, 10: Add, ListBox, x462 y200 w120 h90 , ListBox
 Gui, 10: Add, Link, x462 y290 w120 h20 gMODULE_CLIENT +Center ,<a id="A">Modify Clients...</a>
-;Gui, 10: Add, Text, x462 y290 w120 h20 +BackgroundTrans, Modify Clients...
-Gui, 10: Add, Text, x42 y190 w90 h20 , Venture Profits
-Gui, 10: Add, Edit, x132 y190 w100 h20 , Edit
+
+
 Gui, 10: Font, Bold, 
 Gui, 10: Add, Text, x342 y180 w120 h20 +Center, Products
 Gui, 10: Font, , 
 Gui, 10: Add, ListBox, x342 y200 w120 h82 , ListBox
 Gui, 10: Add, Link, x342 y290 w120 h20 gMODULE_PRODUCTS +Center ,<a id="A">Modify Products...</a>
 ;Gui, 10: Add, Text, x342 y290 w120 h20 +BackgroundTrans, Modify Products...
-Gui, 10: Add, Text, x42 y210 w90 h20 , Creation Date
-Gui, 10: Add, Edit, x132 y210 w100 h20 , Edit
+
 Gui, 10: Font, Bold, 
 Gui, 10: Add, GroupBox, x42 y300 w540 h50 , Disolve Venture
 Gui, 10: Add, Text, x52 y320 w390 h20 , (Profits Merged to Bank`, Clients / Products disolved)
 Gui, 10: Add, Button, x482 y320 w90 h20 , Disolve
+
+Gui, 10: Font, Bold, 
 Gui, 10: Add, GroupBox, x32 y370 w550 h50 , New Venture
 Gui, 10: Font, , 
 Gui, 10: Add, Text, x272 y390 w70 h20 , Venture Name
 Gui, 10: Add, Edit, x362 y390 w100 h20 vNEW_VENTURE_NAME,
 Gui, 10: Add, Button, x482 y390 w90 h20 gCREATE_NEW_VENTURE, Create
-Gui, 10: Show, w616 h474,% this._Name
+Gui, 10: Show, w616 h474,% this._UnmodifiedName
 	DllCall("SetParent", "uint", AuthH, "uint", MainH)
 return
 }
 
-createVenture(Name){
+createDatabaseEntry(Entry_Name,Entry_Details := ""){
 	global
-	CURRENT_POS.VentureAccounts.WriteData(0,"Profit",Name)
-	CURRENT_POS.VentureAccounts.WriteData(Get_InternetTime(),"CreateDate",Name)
-D:=_ListAddStart(CURRENT_POS.VentureAccounts.ReadData("Counter","Counter",false),Name)
-CURRENT_POS.VentureAccounts.WriteData(D,"Counter","Counter")
-CURRENT_POS.TransactionDatabase.createTransaction("Venture","Created",,Name)
+	
+	this._Database.WriteData(Get_InternetTime(),"CreateDate",Entry_Name)
+	
+	Loop,Parse,Entry_Details,|
+	{
+		StringSplit,Entry_Piece,A_LoopField,:
+		this._Database.WriteData(Entry_Piece2,Entry_Piece1,Entry_Name)
+	}
+this.addEntryToCounter(Entry_Name)
+CURRENT_POS.TransactionDatabase.createTransaction("Venture","Created",,Entry_Name)
 this.openInterface()
 }
-
-getAllVentures(){
+addEntryToCounter(Entry_Name){
 	global
-	s:=CURRENT_POS.VentureAccounts.ReadData("Counter","Counter",false)
+	D:=_ListAddStart(this._Database.ReadData("Counter","Counter",false),Entry_Name)
+this._Database.WriteData(D,"Counter","Counter")
+}
+getAllEntrys(){
+	global
+	s:=this._Database.ReadData("Counter","Counter",false)
 	if(s){
 		return s
 	}
 return 	""
 }
 
-getVentureStat(StatName,VentureName,zDefault := 0){
+getEntryStat(StatName,Entry_Name,zDefault := 0){
 	global
-return CURRENT_POS.VentureAccounts.ReadData(StatName,VentureName,zDefault)
+return this._Database.ReadData(StatName,Entry_Name,zDefault)
 }
-setVentureStat(StatName,VentureName,xData){
+setEntryStat(StatName,Entry_Name,xData){
 	global
-	CURRENT_POS.VentureAccounts.WriteData(xData,StatName,VentureName)
+	this._Database.WriteData(xData,StatName,Entry_Name)
 return
 }
 

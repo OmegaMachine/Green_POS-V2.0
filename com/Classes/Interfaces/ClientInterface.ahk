@@ -26,7 +26,7 @@ Gui, 5: Font, ,
 Gui, 5: Font, Bold, 
 Gui, 5: Add, GroupBox, x12 y30 w640 h380 , Select Client from Venture
 Gui, 5: Font, , 
-Gui, 5: Add, ListBox, x22 y70 w130 h230 , % CURRENT_POS.Ventures.getAllVentures()
+Gui, 5: Add, ListBox, x22 y70 w130 h230 , % CURRENT_POS.Ventures.getAllEntrys()
 Gui, 5: Add, ListBox, x162 y70 w130 h230 , 
 
 Gui, 5: Add, Link, x22 y300 w130 h20 gMODULE_VENTURES +Center ,<a id="A">create new venture...</a>

@@ -13,11 +13,13 @@ return
 	CURRENT_POS.Logger.Log("Message","....Failed. Name invalid.",MESSAGE_SEP)
 return	
 }
-CURRENT_POS.Ventures.createVenture(NEW_VENTURE_NAME)
+;CURRENT_POS.Ventures.createVenture(NEW_VENTURE_NAME)
+CURRENT_POS.Ventures.createDatabaseEntry(NEW_VENTURE_NAME,"Profits:0")
 return
 SELECT_VENTURE:
 Gui,10:Submit,NoHide
-
-GuiControl,,_InvestorName,%Investor_List%
-GuiControl,,_JoinDate,% CURRENT_POS.Investors.getInvestorStat("JoinDate",Investor_List)
+GuiControl,,Venture_VentureName,%Venture_VentureBox%
+GuiControl,,Venture_VentureProfits,% CURRENT_POS.Ventures.getEntryStat("Profits",Venture_VentureBox)
+GuiControl,,Venture_VentureCreation,% CURRENT_POS.Ventures.getEntryStat("CreateDate",Venture_VentureBox)
+;GuiControl,,_JoinDate,% CURRENT_POS.Investors.getInvestorStat("JoinDate",Investor_List)
 return

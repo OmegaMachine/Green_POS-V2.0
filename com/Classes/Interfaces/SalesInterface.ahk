@@ -24,7 +24,7 @@ Gui, 8:Font, ,
 Gui, 8:Font, Bold, 
 Gui, 8:Add, GroupBox, x12 y30 w840 h330 , Venture
 Gui, 8:Font, , 
-Gui, 8:Add, ListBox, x22 y80 w120 h200 , % CURRENT_POS.Ventures.getAllVentures()
+Gui, 8:Add, ListBox, x22 y80 w120 h200 , % CURRENT_POS.Ventures.getAllEntrys()
 Gui, 8:Font, Bold, 
 Gui, 8:Add, GroupBox, x152 y40 w690 h310 , Product && Client
 Gui, 8:Font, , 
