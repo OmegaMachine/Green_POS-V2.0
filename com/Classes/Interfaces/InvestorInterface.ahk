@@ -73,7 +73,7 @@ Gui,4: Font, ,
 Gui,4: Font, Bold, Verdana
 Gui,4: Add, GroupBox, x222 y290 w380 h40 , Remove Investor
 Gui,4: Font, ,
-Gui,4: Add, Button, x502 y300 w90 h20 , Remove
+Gui,4: Add, Button, x502 y300 w90 h20 gDELETE_INVESTOR, Remove
 Gui,4: Add, Text, x233 y307 w260 h20 +Center, (must have 0 shares)
 Gui,4: Font, , 
 Gui,4: Font, Bold, Verdana
@@ -84,9 +84,9 @@ Gui,4: Add, Edit, x62 y370 w100 h20 vINVESTOR_NEW_NAME,
 Gui,4: Add, Text, x172 y370 w40 h20 , Email
 Gui,4: Add, Edit, x212 y370 w100 h20 vINVESTOR_NEW_EMAIL, 
 Gui,4: Add, Text, x322 y370 w50 h20 , Password
-Gui,4: Add, Edit, x382 y370 w100 h20 vINVESTOR_NEW_PW, 
+Gui,4: Add, Edit, x382 y370 w100 h20 vINVESTOR_NEW_PW +Password, 
 Gui,4: Add, Text, x322 y390 w60 h20 , Repeat PW
-Gui,4: Add, Edit, x382 y390 w100 h20 vINVESTOR_NEW_PWREPEAT, 
+Gui,4: Add, Edit, x382 y390 w100 h20 vINVESTOR_NEW_PWREPEAT +Password, 
 Gui,4: Add, Button, x502 y390 w90 h20 gCREATE_NEW_INVESTOR, Create
 Gui,4: Show, w627 h433, % this._Name
 
@@ -152,7 +152,16 @@ CURRENT_POS.AdminAccounts.WriteData(D,"Counter","Counter")
 CURRENT_POS.TransactionDatabase.createTransaction("Investor","Created",,VUsername)
 this.openInterface()
 }
+deleteAdmin(VUsername){
+	global
 
+	CURRENT_POS.AdminAccounts.WriteData(0,"Investments",vUsername)
+D:=_ListRemoveByData(CURRENT_POS.AdminAccounts.ReadData("Counter","Counter",false),vUsername)
+
+CURRENT_POS.AdminAccounts.WriteData(D,"Counter","Counter")
+CURRENT_POS.TransactionDatabase.createTransaction("Investor","Removed",,VUsername)
+this.openInterface()
+}
 getAllInvestors(){
 	global
 return 	CURRENT_POS.AdminAccounts.ReadData("Counter","Counter",false)

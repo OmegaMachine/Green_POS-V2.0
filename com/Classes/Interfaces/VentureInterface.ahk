@@ -86,7 +86,8 @@ createDatabaseEntry(Entry_Name,Entry_Details := ""){
 	}
 this.addEntryToCounter(Entry_Name)
 CURRENT_POS.TransactionDatabase.createTransaction("Venture","Created",Entry_Name)
-this.openInterface()
+;this.openInterface()
+GuiControl,,Venture_VentureBox,% "|" . this.getAllEntrys()
 }
 addEntryToCounter(Entry_Name){
 	global
@@ -112,6 +113,14 @@ setEntryStat(StatName,Entry_Name,xData){
 return
 }
 
+
+
+
+
+
+
+
+
 ;;;;;CLIENTS
 createClient(Venture_Name,Client_Name,Entry_Details := ""){
 	global
@@ -124,7 +133,8 @@ createClient(Venture_Name,Client_Name,Entry_Details := ""){
 	}
 this.addClientToCounter(Venture_Name,Client_Name)
 CURRENT_POS.TransactionDatabase.createTransaction("Client","Created",Venture_Name,Client_Name)
-CURRENT_POS.Clients.openInterface()
+;CURRENT_POS.Clients.openInterface()
+gosub,CLIENTSELECT_VENTURE
 }
 addClientToCounter(Venture_Name,Client_Name){
 	global
@@ -151,7 +161,14 @@ return
 
 
 
-
+deleteClient(clientName,ventureName){
+	global
+this.setClientStat("Debt",ventureName,clientName,0)
+D:=_ListRemoveByData(this._Database.ReadData("Client_Counter",ventureName,false),clientName)
+this._Database.WriteData(D,"Client_Counter",ventureName)
+CURRENT_POS.AdminAccounts.WriteData(D,"Counter","Counter")
+CURRENT_POS.TransactionDatabase.createTransaction("Client","Removed",ventureName,clientName)
+}
 
 
 
@@ -171,7 +188,8 @@ createProduct(Venture_Name,Product_Name,Entry_Details := ""){
 	}
 this.addProductToCounter(Venture_Name,Product_Name)
 CURRENT_POS.TransactionDatabase.createTransaction("Product","Created",Venture_Name,Product_Name)
-CURRENT_POS.Products.openInterface()
+;CURRENT_POS.Products.openInterface()
+gosub,PRODUCTSELECT_VENTURE
 }
 addProductToCounter(Venture_Name,Product_Name){
 	global

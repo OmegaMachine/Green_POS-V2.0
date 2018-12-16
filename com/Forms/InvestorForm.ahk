@@ -78,3 +78,16 @@ Gui,4:Submit,NoHide
 
 GuiControl,,_SellTotalPrice,% _SellQuantity * CURRENT_POS.getMinShareValue()
 return
+
+DELETE_INVESTOR:
+Gui,4:Submit,NoHide
+if(CURRENT_POS.Investors.getInvestorStat("Shares",Investor_List) = 0){
+	MsgBox, 4, Remove Investor,% "Are you sure you would like to remove investor >" . Investor_List . "< ?"
+	IfMsgBox,Yes
+	{
+	CURRENT_POS.Investors.deleteAdmin(Investor_List)
+}
+}else{
+	MsgBox, 16, Cannot Remove Investor, Cannot remove investor. Must have 0 shares.
+}
+return
