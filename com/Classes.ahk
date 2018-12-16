@@ -1,8 +1,9 @@
 ﻿#Include com\Classes\Database.ahk
+#Include com\Classes\Database2.ahk
 #Include com\Classes\TransactionDatabase.ahk
 #Include com\Classes\Transaction.ahk
 #Include com\Classes\GITBinaryUpdater.ahk
-
+#Include com\Classes\Venture.ahk
 #Include com\Classes\Interfaces\MainInterface.ahk ;2
 #Include com\Classes\Interfaces\AuthenticationInterface.ahk ;3
 #Include com\Classes\Interfaces\InvestorInterface.ahk ;4

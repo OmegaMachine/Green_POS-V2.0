@@ -47,14 +47,14 @@ Gui, 10: Add, Edit, x132 y210 w150 h20 +Center +ReadOnly vVenture_VentureProfits
 Gui, 10: Font, Bold,
 Gui, 10: Add, Text, x462 y180 w120 h20 +Center +BackgroundTrans, Clients
 Gui, 10: Font, , 
-Gui, 10: Add, ListBox, x462 y200 w120 h90 , ListBox
+Gui, 10: Add, ListBox, x462 y200 w120 h90 vVenture_ClientBox, 
 Gui, 10: Add, Link, x462 y290 w120 h20 gMODULE_CLIENT +Center ,<a id="A">Modify Clients...</a>
 
 
 Gui, 10: Font, Bold, 
 Gui, 10: Add, Text, x342 y180 w120 h20 +Center, Products
 Gui, 10: Font, , 
-Gui, 10: Add, ListBox, x342 y200 w120 h82 , ListBox
+Gui, 10: Add, ListBox, x342 y200 w120 h82 vVenture_ProductBox, 
 Gui, 10: Add, Link, x342 y290 w120 h20 gMODULE_PRODUCTS +Center ,<a id="A">Modify Products...</a>
 ;Gui, 10: Add, Text, x342 y290 w120 h20 +BackgroundTrans, Modify Products...
 
@@ -112,5 +112,14 @@ setEntryStat(StatName,Entry_Name,xData){
 return
 }
 
+;;;;;CLIENTS
+getAllClients(Venture_Name){
+	global
+	s:=this._Database.ReadData("Client_Counter",Venture_Name,false)
+	if(s){
+		return s
+	}
+return 	""
+}
 
 }

@@ -21,5 +21,7 @@ Gui,10:Submit,NoHide
 GuiControl,,Venture_VentureName,%Venture_VentureBox%
 GuiControl,,Venture_VentureProfits,% CURRENT_POS.Ventures.getEntryStat("Profits",Venture_VentureBox)
 GuiControl,,Venture_VentureCreation,% CURRENT_POS.Ventures.getEntryStat("CreateDate",Venture_VentureBox)
+GuiControl,,Venture_ClientBox,% CURRENT_POS.Ventures.getAllClients(Venture_VentureBox)
+
 ;GuiControl,,_JoinDate,% CURRENT_POS.Investors.getInvestorStat("JoinDate",Investor_List)
 return

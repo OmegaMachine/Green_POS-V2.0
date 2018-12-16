@@ -1,7 +1,8 @@
 ﻿Class Database{
-	__New(databaseName,databaseFolder,enableEncryption := false,encryptNames := false,encryptionKey := "197165763784hfjkwbhjfhbsdgfsgdfuy734"){
+	__New(databaseName,enableEncryption := false,encryptNames := false,encryptionKey := "197165763784hfjkwbhjfhbsdgfsgdfuy734"){
 	this._Name := databaseName
-	this._Folder := databaseFolder
+	this._Folder := A_ScriptDir . "\data\" . databaseName . "\"
+	FileCreateDir, % this._Folder
 	this._EnableEncryption := enableEncryption
 	this._EncryptionKey := encryptionKey
 	this._EncryptNames := encryptNames
