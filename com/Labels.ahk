@@ -12,9 +12,28 @@ return
 6GuiSize:
 Gui,6:Default
 Gui,6: +LastFound
+
 GuiControl,Move,LoggerText,w%A_GUIWidth% h%A_GUIHeight%
 return
+9GuiSize:
+Gui,9:Default
+Gui,9: +LastFound
+HO := 105
+WO := 10
+LVH:=A_GUIHeight-38-HO
+LVW:=A_GUIWidth-34-WO
+GBW:=A_GUIWidth-24-7
+GBH := A_GUIHeight-28
+GBEW:=A_GUIWidth-16
+GBEH := A_GUIHeight-18
 
+GuiControl,Move,TRANSACTION_LISTVIEW,w%LVW% h%LVH% 
+GuiControl,Move,GBTrans,w%GBW% h%GBEH% 
+GuiControl,Move,GBExplorer,w%GBEW% h%GBEH% 
+GuiControl,Move,GBF,w%GBW% 
+GuiControl,Move,TT,w%A_GUIWidth% 
+WinSet, Redraw
+return
 
 2GuiSize:
 Gui,2: +LastFound
