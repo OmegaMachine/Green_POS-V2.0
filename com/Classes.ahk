@@ -11,6 +11,7 @@
 #Include com\Forms\VentureForm.ahk ;4
 #Include com\Forms\ClientForm.ahk ;4
 #Include com\Forms\ProductForm.ahk ;4
+#Include com\Forms\TransactionForm.ahk ;4
 #Include com\Classes\Interfaces\ClientInterface.ahk ;5
 #Include com\Classes\Interfaces\LoggerInterface.ahk ;6
 #Include com\Classes\Interfaces\ProductInterface.ahk ;7

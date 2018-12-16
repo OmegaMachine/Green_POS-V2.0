@@ -6,13 +6,18 @@ if(CHECK_FOR_UPDATES){
 CURRENT_POS.Updater.checkForUpdate()
 }
 ;Databases
-CURRENT_POS.Database := New Database("Main",FOLDER_MAIN,true,true,ENCRYPTION_KEY)
-CURRENT_POS.TransactionDatabase := New TransactionDatabase("Main",FOLDER_TRANSACTIONS,true,true,ENCRYPTION_KEY)
-CURRENT_POS.AdminAccounts := New Database("Admin",FOLDER_INVESTOR,true,true,ENCRYPTION_KEY)
+CURRENT_POS.Database := New Database("Main",FOLDER_MAIN,ENCRYPT_DATAVALUES,ENCRYPT_DATAKEYS,ENCRYPTION_KEY)
+CURRENT_POS.TransactionDatabase := New TransactionDatabase("Main",FOLDER_TRANSACTIONS,ENCRYPT_TRANSACTIONDATA,ENCRYPT_TRANSACTIONKEYS,ENCRYPTION_KEY)
+CURRENT_POS.AdminAccounts := New Database("Admin",FOLDER_INVESTOR,ENCRYPT_DATAVALUES,ENCRYPT_DATAKEYS,ENCRYPTION_KEY)
 ;CURRENT_POS.VentureAccounts := New Database("Ventures",FOLDER_VENTURES,true,true,ENCRYPTION_KEY)
 ;Functions
 CURRENT_POS.DestroyAllInterfaces := Func("Destroy_All_Interfaces")
 CURRENT_POS.getName := Func("GetPosName")
+CURRENT_POS.getShareValue := Func("GET_SHARE_VALUE")
+CURRENT_POS.getMinShareValue := Func("GET_MIN_SHARE_VALUE")
+CURRENT_POS.getSharesSold := Func("GET_SHARES_SOLD")
+CURRENT_POS.addMainStat := Func("ADD_MAIN_STAT")
+CURRENT_POS.subMainStat := Func("SUB_MAIN_STAT")
 ;Interfaces
 CURRENT_POS.Main := New MainInterface(MAIN_GUI_NAME)
 CURRENT_POS.Authenticator := New AuthenticationInterface(AUTH_GUI_NAME)
@@ -25,7 +30,7 @@ CURRENT_POS.Ventures := New VentureInterface(VENTURES_GUI_NAME)
 CURRENT_POS.Transactions := New TransactionInterface(TRANSACTIONS_GUI_NAME)
 CURRENT_POS.Settings := New SettingsInterface(SETTINGS_GUI_NAME)
 CURRENT_POS.Memos := New MemoInterface(MEMO_GUI_NAME)
-
+;CURRENT_POS.addMainStat("SharesSold",1)
 
 
 ;Startup

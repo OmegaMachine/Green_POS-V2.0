@@ -5,7 +5,7 @@ global
 		StringReplace,InterfaceName,InterfaceName,%A_Space%,_,All
 		this._Name := InterfaceName
 		this._Folder :=  A_ScriptDir . "\data\" . "Ventures" . "\"
-		this._Database := New Database("Ventures",this._Folder,false,false,ENCRYPTION_KEY)
+		this._Database := New Database("Ventures",this._Folder,ENCRYPT_DATAVALUES,ENCRYPT_DATAKEYS,ENCRYPTION_KEY)
 
 	}
 
@@ -85,7 +85,7 @@ createDatabaseEntry(Entry_Name,Entry_Details := ""){
 		this._Database.WriteData(Entry_Piece2,Entry_Piece1,Entry_Name)
 	}
 this.addEntryToCounter(Entry_Name)
-CURRENT_POS.TransactionDatabase.createTransaction("Venture","Created",,Entry_Name)
+CURRENT_POS.TransactionDatabase.createTransaction("Venture","Created",Entry_Name)
 this.openInterface()
 }
 addEntryToCounter(Entry_Name){

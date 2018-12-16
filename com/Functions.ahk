@@ -20,7 +20,7 @@ Destroy_All_Interfaces(this){
 }
 GetPosName(this){
 	global
-	return CURRENT_POS.Database.ReadData("Name","Main","")
+	return CURRENT_POS.Database.ReadData("Name","Main","Default")
 }
 
 WM_Move(wP,lP,msg) {
@@ -64,4 +64,67 @@ AllowableText(XText){
 return 0	
 }
 return 1
+}
+AllowableNum(XNum){
+	;if XText is Not alnum
+	;{
+	;	return 0
+;}
+	if XNum is space
+	{
+return 0	
+}
+	if XNum is Not Number
+	{
+return 0	
+}
+return 1
+}
+getEncryptionKey(){
+return "wefgweg5t45334g3j98j894gt"	
+}
+GET_MIN_SHARE_VALUE(this){
+	global
+	V_Value := CURRENT_POS.Database.ReadData("Value","Main",0)
+	V_SharesSold := CURRENT_POS.Database.ReadData("SharesSold","Main",0)
+	V_Init := CURRENT_POS.Database.ReadData("InitialShareValue","Main",0)
+	if(V_SharesSold = 0){
+		return V_Init
+	}
+	V_ShareValue := V_Value / V_SharesSold
+	if(V_ShareValue < V_Init){
+		return V_Init
+	}	
+	return V_ShareValue
+}
+GET_SHARE_VALUE(this){
+	global
+	V_Value := CURRENT_POS.Database.ReadData("Value","Main",0)
+	V_SharesSold := CURRENT_POS.Database.ReadData("SharesSold","Main",0)
+	V_Init := CURRENT_POS.Database.ReadData("InitialShareValue","Main",0)
+	if(V_SharesSold = 0){
+		return V_Init
+	}
+		V_ShareValue := V_Value / V_SharesSold
+	return V_ShareValue
+}
+GET_SHARES_SOLD(this){
+	global
+	return CURRENT_POS.Database.ReadData("SharesSold","Main",0)
+}
+ADD_MAIN_STAT(this,StatName,xData){
+	global
+		currentStat := CURRENT_POS.Database.ReadData(StatName,"Main",0)
+	currentStat += xData
+	CURRENT_POS.Database.WriteData(currentStat,StatName,"Main")
+	;CURRENT_POS.AdminAccounts.WriteData(currentStat,StatName,"Main")
+return
+}
+SUB_MAIN_STAT(this,StatName,xData){
+	global
+		currentStat := CURRENT_POS.Database.ReadData(StatName,"Main",0)
+	currentStat -= xData
+	CURRENT_POS.Database.WriteData(currentStat,StatName,"Main")
+	;CURRENT_POS.AdminAccounts.WriteData(currentStat,StatName,"Main")
+return
 }

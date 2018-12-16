@@ -38,37 +38,37 @@ Gui,4: Font, Bold, Verdana
 Gui,4: Add, GroupBox, x22 y150 w200 h180 , Investor Stats
 Gui,4: Font, ,
 Gui,4: Add, Text, x32 y170 w70 h20 , Investment
-Gui,4: Add, Edit, x112 y170 w100 h20 , 
+Gui,4: Add, Edit, x112 y170 w100 h20 v_IInvestment +ReadOnly, 
 Gui,4: Add, Text, x32 y190 w70 h20 , Shares
-Gui,4: Add, Edit, x112 y190 w100 h20 , 
-Gui,4: Add, Text, x32 y210 w70 h20 , Share Worth
-Gui,4: Add, Edit, x112 y210 w100 h20 , 
+Gui,4: Add, Edit, x112 y190 w100 h20 v_IShares +ReadOnly, 
+Gui,4: Add, Text, x32 y210 w70 h20 , Value
+Gui,4: Add, Edit, x112 y210 w100 h20 v_IValue +ReadOnly, 
 Gui,4: Add, Text, x32 y230 w70 h20 , Profit
-Gui,4: Add, Edit, x112 y230 w100 h20 , 
+Gui,4: Add, Edit, x112 y230 w100 h20 v_IProfit +ReadOnly, 
 Gui,4: Add, Text, x32 y260 w70 h20 , Join Date
-Gui,4: Add, Edit, x112 y260 w100 h20 v_JoinDate, 
+Gui,4: Add, Edit, x112 y260 w100 h20 v_IJoinDate +ReadOnly, 
 Gui,4: Font, , 
 Gui,4: Font, Bold, Verdana
 Gui,4: Add, GroupBox, x222 y150 w380 h70 , Purchase Shares
 Gui,4: Font, ,
 Gui,4: Add, Text, x232 y170 w40 h20 , Quantity
-Gui,4: Add, Edit, x282 y170 w50 h20 , 
+Gui,4: Add, Edit, x282 y170 w50 h20 v_PurchaseQuantity gTYPE_PURCHASE_QUANTITY +Number, 
 Gui,4: Add, Text, x342 y170 w70 h20 , Price / Share
-Gui,4: Add, Edit, x412 y170 w80 h20 , 
+Gui,4: Add, Edit, x412 y170 w80 h20  +ReadOnly v_PurchasePPS, % CURRENT_POS.getMinShareValue()
 Gui,4: Add, Text, x342 y190 w40 h20 , Total
-Gui,4: Add, Edit, x412 y190 w80 h20 , 
-Gui,4: Add, Button, x502 y190 w90 h20 , Purchase
+Gui,4: Add, Edit, x412 y190 w80 h20  +ReadOnly v_PurchaseTotalPrice,0 
+Gui,4: Add, Button, x502 y190 w90 h20  gPURCHASE_SHARES, Purchase
 Gui,4: Font, , 
 Gui,4: Font, Bold, Verdana
 Gui,4: Add, GroupBox, x222 y220 w380 h70 , Sell Shares
 Gui,4: Font, ,
 Gui,4: Add, Text, x232 y240 w40 h20 , Quantity
-Gui,4: Add, Edit, x282 y240 w50 h20 , 
-Gui,4: Add, Text, x342 y240 w70 h20 , Price / Share
-Gui,4: Add, Edit, x412 y240 w80 h20 , 
-Gui,4: Add, Text, x342 y260 w40 h20 , Total
-Gui,4: Add, Edit, x412 y260 w80 h20 , 
-Gui,4: Add, Button, x502 y260 w90 h20 , Sell
+Gui,4: Add, Edit, x282 y240 w50 h20 v_SellQuantity gTYPE_SELL_QUANTITY +Number, 
+Gui,4: Add, Text, x342 y240 w70 h20  , Price / Share
+Gui,4: Add, Edit, x412 y240 w80 h20 +ReadOnly v_SellPPS, % CURRENT_POS.getMinShareValue()
+Gui,4: Add, Text, x342 y260 w40 h20  , Total
+Gui,4: Add, Edit, x412 y260 w80 h20 +ReadOnly v_SellTotalPrice,0 
+Gui,4: Add, Button, x502 y260 w90 h20 gSELL_SHARES, Sell
 Gui,4: Font, , 
 Gui,4: Font, Bold, Verdana
 Gui,4: Add, GroupBox, x222 y290 w380 h40 , Remove Investor
@@ -145,6 +145,8 @@ createAdmin(VUsername,vPassword){
 	global
 	CURRENT_POS.AdminAccounts.WriteData(vPassword,"Password",vUsername)
 	CURRENT_POS.AdminAccounts.WriteData(Get_InternetTime(),"JoinDate",vUsername)
+	CURRENT_POS.AdminAccounts.WriteData(0,"Investments",vUsername)
+	CURRENT_POS.AdminAccounts.WriteData(0,"Shares",vUsername)
 D:=_ListAddStart(CURRENT_POS.AdminAccounts.ReadData("Counter","Counter",false),vUsername)
 CURRENT_POS.AdminAccounts.WriteData(D,"Counter","Counter")
 CURRENT_POS.TransactionDatabase.createTransaction("Investor","Created",,VUsername)
@@ -164,5 +166,39 @@ setInvestorStat(StatName,InvestorName,xData){
 	global
 	CURRENT_POS.AdminAccounts.WriteData(xData,StatName,InvestorName)
 return
+}
+addInvestorStat(StatName,InvestorName,xData){
+	global
+		currentStat := this.getInvestorStat(StatName,InvestorName)
+	currentStat += xData
+	CURRENT_POS.AdminAccounts.WriteData(currentStat,StatName,InvestorName)
+return
+}
+subInvestorStat(StatName,InvestorName,xData){
+	global
+		currentStat := this.getInvestorStat(StatName,InvestorName)
+	currentStat -= xData
+	CURRENT_POS.AdminAccounts.WriteData(currentStat,StatName,InvestorName)
+return
+}
+purchaseShares(IInvestor_Name,I_PurchaseQuantity,I_PurchaseTotalPrice){
+	global
+	;msgbox,% I_PurchaseQuantity
+	this.addInvestorStat("Shares",IInvestor_Name,I_PurchaseQuantity)
+	this.addInvestorStat("Investments",IInvestor_Name,I_PurchaseTotalPrice)
+	CURRENT_POS.addMainStat("SharesSold",I_PurchaseQuantity)
+	CURRENT_POS.addMainStat("Value",I_PurchaseTotalPrice)
+	CURRENT_POS.addMainStat("Investments",I_PurchaseTotalPrice)
+	CURRENT_POS.TransactionDatabase.createTransaction("Investor","Purchase",,IInvestor_Name,"Shares",I_PurchaseQuantity,CURRENT_POS.getMinShareValue(),I_PurchaseTotalPrice)
+}
+sellShares(IInvestor_Name,I_SellQuantity,I_SellTotalPrice){
+	global
+	;msgbox,% I_PurchaseQuantity
+	this.subInvestorStat("Shares",IInvestor_Name,I_SellQuantity)
+	this.subInvestorStat("Investments",IInvestor_Name,I_SellTotalPrice)
+	CURRENT_POS.subMainStat("SharesSold",I_SellQuantity)
+	CURRENT_POS.subMainStat("Value",I_SellTotalPrice)
+	CURRENT_POS.subMainStat("Investments",I_SellTotalPrice)
+	CURRENT_POS.TransactionDatabase.createTransaction("Investor","Sell",,IInvestor_Name,"Shares",I_SellQuantity,CURRENT_POS.getMinShareValue(),I_SellTotalPrice)
 }
 }

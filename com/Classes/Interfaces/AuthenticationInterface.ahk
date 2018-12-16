@@ -25,6 +25,9 @@ Authenticated(){
 }
 Logout(Name){
 global
+	if(TRANSACT_SESSIONS){
+CURRENT_POS.TransactionDatabase.createTransaction("Session","Ended",,Name)
+}
 	Menu, AccountMenu, Rename,&Logout - %Name%,&Login
 	this._Authenticated := false
 	this._authAs := 0
@@ -32,9 +35,7 @@ global
 	CURRENT_POS.DestroyAllInterfaces()
 	CURRENT_POS.Logger.Clear()
 	CURRENT_POS.Logger.Log("Message","Logged Out Admin >" . Name . "<",MESSAGE_SEP)
-	if(TRANSACT_SESSIONS){
-CURRENT_POS.TransactionDatabase.createTransaction("Session","Ended",,Name)
-}
+
 }
 requestAuthentication(){
 	global
@@ -177,6 +178,10 @@ return
 	Guicontrol,,NEW_BLACKBOOK_PWREPEAT,
 	this.createAdmin(NEW_BLACKBOOK_USERNAME,NEW_BLACKBOOK_PW)
 	CURRENT_POS.Database.WriteData(NEW_BLACKBOOK_NAME,"Name","Main")
+	CURRENT_POS.Database.WriteData(0,"Investments","Main")
+	CURRENT_POS.Database.WriteData(0,"Value","Main")
+	CURRENT_POS.Database.WriteData(0,"SharesSold","Main")
+	CURRENT_POS.Database.WriteData(INITIAL_SHAREVALUE,"InitialShareValue","Main")
 	this._Creator:=false
 	Gui,2: Show, w%MAIN_SIZEw% h%MAIN_SIZEh%  x0 y0,% CURRENT_POS.getName() . " " . CURRENT_POS.Main._Name . " - v" . PROGRAM_VERSION 
 	this.requestAuthentication()
@@ -228,6 +233,8 @@ createAdmin(VUsername,vPassword){
 	global
 CURRENT_POS.AdminAccounts.WriteData(vPassword,"Password",vUsername)
 CURRENT_POS.AdminAccounts.WriteData(Get_InternetTime(),"JoinDate",vUsername)
+CURRENT_POS.AdminAccounts.WriteData(0,"Investments",vUsername)
+	CURRENT_POS.AdminAccounts.WriteData(0,"Shares",vUsername)
 D:=_ListAddStart(CURRENT_POS.AdminAccounts.ReadData("Counter","Counter",false),vUsername)
 CURRENT_POS.AdminAccounts.WriteData(D,"Counter","Counter")
 CURRENT_POS.TransactionDatabase.createTransaction("BlackBook","Initialized",,VUsername)

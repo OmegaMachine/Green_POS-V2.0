@@ -91,15 +91,18 @@ createTransaction(_Type,_SubType := "-",_Venture := "-",_Account := "-",_Product
 	FreeSlotd:=this.getFreeTransactionSlot()
 	_Date := Get_InternetTime()
 	_AUTH := CURRENT_POS.Authenticator.Authenticated()
-	if(_Total != "-"){
-	_NewBlackBook := "000"	
-	}else{
-	_NewBlackBook := "-"	;newblackbook value
-}
+	_NewBlackBook := CURRENT_POS.Database.ReadData("Value","Main",0)
+
 	if(_Venture != "-"){
-	_NewVenture := "000"	
+	_NewVenture := CURRENT_POS.Ventures.getEntryStat("Profits",_Venture)
 	}else{
-	_NewVenture := "-" ;newventure value	
+if(_Product = "Shares"){
+	_Venture := "Investments"
+	_NewVenture := CURRENT_POS.Investors.getInvestorStat("Shares",_Account)
+}else{
+	_Venture := "-"
+_NewVenture := "-"
+}
 }
 	
 	if(MEMO_TO_ADD){
