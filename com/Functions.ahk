@@ -26,12 +26,20 @@ WinSet, Redraw
 }
 
 Get_InternetTime(){
+	global USE_INTERNET_TIME
+	if(USE_INTERNET_TIME){
 URLDownloadToFile,http://worldclockapi.com/api/json/est/now,Time.html	
 	FileRead,Z,Time.Html
 	FileDelete,Time.html
 	Q := ReturnTag(Z,"""currentDateTime"":""","-05:00""`,""utcOffset""")
 	StringSplit,Q,Q,T
 	X := Q1 . " - " . Q2
+}else{
+	;2018-12-17 - 00:17
+Q1:= A_YYYY . "-" . A_MM . "-" . A_DD
+Q2:= A_Hour . ":" . A_Min
+X := Q1 . " - " . Q2
+}
 	return X
 }
 
