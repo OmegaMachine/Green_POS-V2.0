@@ -10,6 +10,9 @@ CURRENT_POS.Database := New Database("Main",FOLDER_MAIN,true,true,ENCRYPTION_KEY
 CURRENT_POS.TransactionDatabase := New TransactionDatabase("Main",FOLDER_TRANSACTIONS,true,true,ENCRYPTION_KEY)
 CURRENT_POS.AdminAccounts := New Database("Admin",FOLDER_INVESTOR,true,true,ENCRYPTION_KEY)
 CURRENT_POS.VentureAccounts := New Database("Ventures",FOLDER_VENTURES,true,true,ENCRYPTION_KEY)
+;Functions
+CURRENT_POS.DestroyAllInterfaces := Func("Destroy_All_Interfaces")
+CURRENT_POS.getName := Func("GetPosName")
 ;Interfaces
 CURRENT_POS.Main := New MainInterface(MAIN_GUI_NAME)
 CURRENT_POS.Authenticator := New AuthenticationInterface(AUTH_GUI_NAME)
@@ -23,8 +26,7 @@ CURRENT_POS.Transactions := New TransactionInterface(TRANSACTIONS_GUI_NAME)
 CURRENT_POS.Settings := New SettingsInterface(SETTINGS_GUI_NAME)
 CURRENT_POS.Memos := New MemoInterface(MEMO_GUI_NAME)
 
-;Functions
-CURRENT_POS.DestroyAllInterfaces := Func("Destroy_All_Interfaces")
+
 
 ;Startup
 ;createTransaction(_Type,_SubType := "-",_Venture := "-",_Account := "-",_Product := "-",_Quantity := "-",_Unit := "-",_Total := "-",_NewVenture := "-",_NewBlackBook := "-",_Memo := "-")

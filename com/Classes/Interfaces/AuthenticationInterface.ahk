@@ -59,23 +59,39 @@ Menu, tray, Icon , %FOLDER_THEME%Auth_icon.ico, 1, 1
 		
 		
 		
-		Gui,3: Add, Text, x10  w50 h20 +BackgroundTrans, Username:
+
+if(this._Creator){
+;	Gui,3: Add, Button, x+m yp w90 h20 g_AttemptCreate, Create
+;		Gui,3: Add, Text, x10 y+m w50 h20 +BackgroundTrans,PW(Again)
+;		Gui,3: Add, Edit, x+M yp w130 h20 vLogin_Repeat +Password,
+		CURRENT_POS.Logger.Log("Message","Initializing a new BlackBook. Please create an Investor account.",MESSAGE_SEP)
+	Gui, 3:Add, Text, x52 y60 w100 h20 , BlackBook Name
+Gui, 3:Add, Edit, x152 y60 w100 h20 vNEW_BLACKBOOK_NAME,
+Gui, 3:Add, Text, x52 y90 w100 h20 , Username
+Gui, 3:Add, Edit, x152 y90 w100 h20 vNEW_BLACKBOOK_USERNAME, 
+Gui, 3:Add, Text, x52 y110 w100 h20 , Password
+Gui, 3:Add, Edit, x152 y110 w100 h20 vNEW_BLACKBOOK_PW  +Password,
+Gui, 3:Add, Text, x52 y130 w100 h20 , Password (repeat)
+Gui, 3:Add, Edit, x152 y130 w100 h20 vNEW_BLACKBOOK_PWREPEAT +Password, 
+Gui, 3:Add, Button, x262 y130 w90 h20 g_AttemptCreate, Create
+Gui, 3:Font, S8 CDefault Bold, Verdana
+Gui, 3:Add, GroupBox, x42 y40 w320 h120 , Initialize New BlackBook
+Gui, 3:Font, S14 CDefault Bold Underline, Verdana
+Gui, 3:Add, Text, x2 y0 w400 h30 +BackgroundTrans +Center, New BlackBook
+Gui, 12:Font, , 
+Gui, 3:Show, w407 h184,% this._Name
+		
+}else{
+			Gui,3: Add, Text, x10  w50 h20 +BackgroundTrans, Username:
 		Gui,3: Add, Edit, x+m yp w130 h20 vLogin_Username,
 
 		Gui,3: Add, Text,x10 y+m w50 h20 +BackgroundTrans, Password:
 		Gui,3: Add, Edit, x+m yp w130 h20 vLogin_Password +Password,
-if(this._Creator){
-	Gui,3: Add, Button, x+m yp w90 h20 g_AttemptCreate, Create
-		Gui,3: Add, Text, x10 y+m w50 h20 +BackgroundTrans,PW(Again)
-		Gui,3: Add, Edit, x+M yp w130 h20 vLogin_Repeat +Password,
-		CURRENT_POS.Logger.Log("Message","Initializing a new BlackBook. Please create an Investor account.",MESSAGE_SEP)
-	
-		
-}else{
 		Gui,3: Add, Button, x+m yp w90 h20 g_AttemptLogin, Login
+		Gui,3: Show,  ,% this._Name
 }
 		
-		Gui,3: Show,  ,% this._Name
+		
 	DllCall("SetParent", "uint", AuthH, "uint", MainH)
 return
 }
@@ -112,42 +128,57 @@ attemptCreate(){
 	global
 	CURRENT_POS.Logger.Log("Message","Attempting to create a new admin account....",MESSAGE_SEP)
 	Gui,3: Submit,NoHide
-	if Login_Username is Not alnum
+	if NEW_BLACKBOOK_USERNAME is Not alnum
 	{
 		MsgBox, 0, Create New Investor, Failed. Invalid Name.
 	CURRENT_POS.Logger.Log("Message","....Failed. Username invalid.",MESSAGE_SEP)
 return	
 }
-	if Login_Username is space
+	if NEW_BLACKBOOK_USERNAME is space
 	{
 		MsgBox, 0, Create New Investor, Failed. Invalid Name.
 	CURRENT_POS.Logger.Log("Message","....Failed. Username invalid.",MESSAGE_SEP)
 return	
 }
-	if Login_Password is Not alnum
+	if NEW_BLACKBOOK_NAME is Not alnum
+	{
+		MsgBox, 0, Create New BlackBook, Failed. Invalid Name.
+	CURRENT_POS.Logger.Log("Message","....Failed. Username invalid.",MESSAGE_SEP)
+return	
+}
+	if NEW_BLACKBOOK_NAME is space
+	{
+		MsgBox, 0, Create New BlackBook, Failed. Invalid Name.
+	CURRENT_POS.Logger.Log("Message","....Failed. Username invalid.",MESSAGE_SEP)
+return	
+}
+	if NEW_BLACKBOOK_PW is Not alnum
 	{
 		MsgBox, 0, Create New Investor, Failed. Invalid Password.
 	CURRENT_POS.Logger.Log("Message","....Failed. Password invalid.",MESSAGE_SEP)
 return	
 }
-	if Login_Password is space
+	if NEW_BLACKBOOK_PW is space
 	{
 		MsgBox, 0, Create New Investor, Failed. Invalid Password.
 	CURRENT_POS.Logger.Log("Message","....Failed. Password invalid.",MESSAGE_SEP)
 return	
 }
-	if (Login_Repeat != Login_Password)
+	if (NEW_BLACKBOOK_PWREPEAT != NEW_BLACKBOOK_PW)
 	{
 			MsgBox, 0, Create New Investor, Failed. Passwords do not match. 
 	CURRENT_POS.Logger.Log("Message","....Failed. Repeat Password does not match Password.",MESSAGE_SEP)
 return	
 }
 
-	Guicontrol,,Login_Username,
-	Guicontrol,,Login_Password,
-	Guicontrol,,Login_Repeat,
-	this.createAdmin(Login_Username,Login_Password)
+	GuiControl,,NEW_BLACKBOOK_NAME,
+	Guicontrol,,NEW_BLACKBOOK_USERNAME,
+	Guicontrol,,NEW_BLACKBOOK_PW,
+	Guicontrol,,NEW_BLACKBOOK_PWREPEAT,
+	this.createAdmin(NEW_BLACKBOOK_USERNAME,NEW_BLACKBOOK_PW)
+	CURRENT_POS.Database.WriteData(NEW_BLACKBOOK_NAME,"Name","Main")
 	this._Creator:=false
+	Gui,2: Show, w%MAIN_SIZEw% h%MAIN_SIZEh%  x0 y0,% CURRENT_POS.getName() . " " . CURRENT_POS.Main._Name . " - v" . PROGRAM_VERSION 
 	this.requestAuthentication()
 	CURRENT_POS.Logger.Log("Message","....Success.",MESSAGE_SEP)
 	

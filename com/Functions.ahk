@@ -18,7 +18,10 @@ Destroy_All_Interfaces(this){
 	CURRENT_POS.Memos.destroyInterface()
 	return
 }
-
+GetPosName(this){
+	global
+	return CURRENT_POS.Database.ReadData("Name","Main","")
+}
 
 WM_Move(wP,lP,msg) {
 Gui,5: +LastFound
