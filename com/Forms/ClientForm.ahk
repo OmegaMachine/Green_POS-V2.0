@@ -1,4 +1,4 @@
-﻿CREATE_NEW_VENTURE:
+﻿CREATE_NEW_CLIENT:
 Gui,10:Submit,NoHide
 clearField(NEW_VENTURE_NAME)
 	if NEW_VENTURE_NAME is Not alnum
@@ -16,7 +16,7 @@ return
 ;CURRENT_POS.Ventures.createVenture(NEW_VENTURE_NAME)
 CURRENT_POS.Ventures.createDatabaseEntry(NEW_VENTURE_NAME,"Profits:0")
 return
-SELECT_VENTURE:
+SELECT_CLIENT:
 Gui,10:Submit,NoHide
 GuiControl,,Venture_VentureName,%Venture_VentureBox%
 GuiControl,,Venture_VentureProfits,% CURRENT_POS.Ventures.getEntryStat("Profits",Venture_VentureBox)

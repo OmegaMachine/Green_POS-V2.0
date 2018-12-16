@@ -121,5 +121,12 @@ getAllClients(Venture_Name){
 	}
 return 	""
 }
-
+getAllProducts(Venture_Name){
+	global
+	s:=this._Database.ReadData("Product_Counter",Venture_Name,false)
+	if(s){
+		return s
+	}
+return 	""
+}
 }

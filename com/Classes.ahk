@@ -1,5 +1,5 @@
 ﻿#Include com\Classes\Database.ahk
-#Include com\Classes\Database2.ahk
+;#Include com\Classes\Database2.ahk
 #Include com\Classes\TransactionDatabase.ahk
 #Include com\Classes\Transaction.ahk
 #Include com\Classes\GITBinaryUpdater.ahk
@@ -9,6 +9,7 @@
 #Include com\Classes\Interfaces\InvestorInterface.ahk ;4
 #Include com\Forms\InvestorForm.ahk ;4
 #Include com\Forms\VentureForm.ahk ;4
+#Include com\Forms\ClientForm.ahk ;4
 #Include com\Classes\Interfaces\ClientInterface.ahk ;5
 #Include com\Classes\Interfaces\LoggerInterface.ahk ;6
 #Include com\Classes\Interfaces\ProductInterface.ahk ;7
