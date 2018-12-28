@@ -5,18 +5,9 @@ CURRENT_POS.Updater := New GITBinaryUpdater("https://raw.githubusercontent.com/O
 if(CHECK_FOR_UPDATES){
 CURRENT_POS.Updater.checkForUpdate()
 }
-IfNotExist,%FOLDER_THEME%Main_Icon.ico
-{
-	URLDownloadToFile,https://raw.githubusercontent.com/OmegaMachine/Green_POS-V2.0/master/Theme/Main_Icon.ico,%FOLDER_THEME%Main_Icon.ico
-}
-IfNotExist,%FOLDER_THEME%Settings_Icon.ico
-{
-	URLDownloadToFile,https://raw.githubusercontent.com/OmegaMachine/Green_POS-V2.0/master/Theme/Settings_Icon.ico,%FOLDER_THEME%Settings_Icon.ico
-}
-IfNotExist,%FOLDER_THEME%Auth_Icon.ico
-{
-	URLDownloadToFile,https://raw.githubusercontent.com/OmegaMachine/Green_POS-V2.0/master/Theme/Auth_Icon.ico,%FOLDER_THEME%Auth_Icon.ico
-}
+
+
+;https://raw.githubusercontent.com/OmegaMachine/Green_POS-V2.0/master/Theme/
 ;Databases
 CURRENT_POS.Database := New Database("Main",FOLDER_MAIN,ENCRYPT_DATAVALUES,ENCRYPT_DATAKEYS,ENCRYPTION_KEY)
 CURRENT_POS.TransactionDatabase := New TransactionDatabase("Main",FOLDER_TRANSACTIONS,ENCRYPT_TRANSACTIONDATA,ENCRYPT_TRANSACTIONKEYS,ENCRYPTION_KEY)
