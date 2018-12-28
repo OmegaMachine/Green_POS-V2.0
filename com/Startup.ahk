@@ -5,6 +5,7 @@ CURRENT_POS.Updater := New GITBinaryUpdater("https://raw.githubusercontent.com/O
 if(CHECK_FOR_UPDATES){
 CURRENT_POS.Updater.checkForUpdate()
 }
+
 ;Databases
 CURRENT_POS.Database := New Database("Main",FOLDER_MAIN,ENCRYPT_DATAVALUES,ENCRYPT_DATAKEYS,ENCRYPTION_KEY)
 CURRENT_POS.TransactionDatabase := New TransactionDatabase("Main",FOLDER_TRANSACTIONS,ENCRYPT_TRANSACTIONDATA,ENCRYPT_TRANSACTIONKEYS,ENCRYPTION_KEY)
@@ -18,6 +19,7 @@ CURRENT_POS.getMinShareValue := Func("GET_MIN_SHARE_VALUE")
 CURRENT_POS.getSharesSold := Func("GET_SHARES_SOLD")
 CURRENT_POS.addMainStat := Func("ADD_MAIN_STAT")
 CURRENT_POS.subMainStat := Func("SUB_MAIN_STAT")
+CURRENT_POS.getMainStat := Func("GET_MAIN_STAT")
 ;Interfaces
 CURRENT_POS.Main := New MainInterface(MAIN_GUI_NAME)
 CURRENT_POS.Authenticator := New AuthenticationInterface(AUTH_GUI_NAME)

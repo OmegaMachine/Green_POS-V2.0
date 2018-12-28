@@ -128,3 +128,7 @@ SUB_MAIN_STAT(this,StatName,xData){
 	;CURRENT_POS.AdminAccounts.WriteData(currentStat,StatName,"Main")
 return
 }
+GET_MAIN_STAT(this,StatNamef){
+	global
+	return CURRENT_POS.Database.ReadData(StatNamef,"Main",0)
+}

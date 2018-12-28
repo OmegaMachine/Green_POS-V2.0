@@ -138,7 +138,10 @@ if(!ALLOW_DEBT_TRANSACTIONS){
 	GuiControl,,CashDebt1,1
 	MsgBox, 16, Debt Transaction Disallowed, Debt transactions have been disallowed by the admin.
 	
+}else{
+	
 }
+gosub,Load_Sale_Details
 return
 
 MODULE_ADDMEMOTONEXT:

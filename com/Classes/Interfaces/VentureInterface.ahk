@@ -166,7 +166,8 @@ deleteClient(clientName,ventureName){
 this.setClientStat("Debt",ventureName,clientName,0)
 D:=_ListRemoveByData(this._Database.ReadData("Client_Counter",ventureName,false),clientName)
 this._Database.WriteData(D,"Client_Counter",ventureName)
-CURRENT_POS.AdminAccounts.WriteData(D,"Counter","Counter")
+;CURRENT_POS.AdminAccounts.WriteData(D,"Counter","Counter")
+
 CURRENT_POS.TransactionDatabase.createTransaction("Client","Removed",ventureName,clientName)
 }
 
@@ -187,7 +188,7 @@ createProduct(Venture_Name,Product_Name,Entry_Details := ""){
 		this._Database.WriteData(Entry_Piece2,Entry_Piece1,Venture_Name . "-" . Product_Name)
 	}
 this.addProductToCounter(Venture_Name,Product_Name)
-CURRENT_POS.TransactionDatabase.createTransaction("Product","Created",Venture_Name,Product_Name)
+CURRENT_POS.TransactionDatabase.createTransaction("Product","Created",Venture_Name,,Product_Name)
 ;CURRENT_POS.Products.openInterface()
 gosub,PRODUCTSELECT_VENTURE
 }
@@ -213,5 +214,15 @@ setProductStat(StatName,Venture_Name,Product_Name,xData){
 	this._Database.WriteData(xData,StatName,Venture_Name . "-" . Product_Name)
 return
 }
-
+deleteProduct(productName,ventureName){
+	global
+this.setClientStat("Quantity",ventureName,productName,0)
+this.setClientStat("Price",ventureName,productName,0)
+this.setClientStat("UnitsSold",ventureName,productName,0)
+this.setClientStat("Profits",ventureName,productName,0)
+this.setClientStat("Sales",ventureName,productName,0)
+D:=_ListRemoveByData(this._Database.ReadData("Product_Counter",ventureName,false),productName)
+this._Database.WriteData(D,"Product_Counter",ventureName)
+CURRENT_POS.TransactionDatabase.createTransaction("Product","Removed",ventureName,,productName)
+}
 }

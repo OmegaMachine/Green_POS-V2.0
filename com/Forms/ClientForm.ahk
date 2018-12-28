@@ -33,6 +33,7 @@ return
 ADD_DEBT:
 Gui,5:Submit,NoHide
 GuiControl,,Debt_To_Add,
+ww:=Debt_To_Add
 if (AllowableNum(Debt_To_Add)){
 	if(Debt_To_Add > 0){
 MsgBox, 36, Add Debt,% "Are you sure you would like to Add  >$" . Debt_To_Add . "< Debt for >" . CLIENT_CLIENTBOX . "< ?"
@@ -47,7 +48,7 @@ D-=Debt_To_Add
 CURRENT_POS.Ventures.setEntryStat("Profits",CLIENT_VENTUREBOX,D)
 CURRENT_POS.TransactionDatabase.createTransaction("Client","Debt Add",CLIENT_VENTUREBOX,CLIENT_CLIENTBOX,,,,Debt_To_Add)
 gosub,SELECT_CLIENT
-MsgBox, 64, Transaction Complete,% "Transaction Completed. >$" . Debt_To_Add . "< Debt added to >" . CLIENT_CLIENTBOX . "< ."
+MsgBox, 64, Transaction Complete,% "Transaction Completed. >$" . ww . "< Debt added to >" . CLIENT_CLIENTBOX . "< ."
 }
 }else{
 MsgBox, 16, Invalid Amount, Please enter a valid Amount.
@@ -61,21 +62,22 @@ return
 PAY_DEBT:
 Gui,5:Submit,NoHide
 GuiControl,,Debt_To_Pay,
+F_Debt := Debt_To_Pay
 if (AllowableNum(Debt_To_Pay)){
 	if(Debt_To_Pay > 0){
 MsgBox, 36, Add Debt,% "Are you sure you would like to Pay  >$" . Debt_To_Pay . "< Debt for >" . CLIENT_CLIENTBOX . "< ?"
 	IfMsgBox,Yes
 	{
 D:=CURRENT_POS.Ventures.getClientStat("Debt",CLIENT_VENTUREBOX,CLIENT_CLIENTBOX)
-D-=Debt_To_Pay
+D-=F_Debt
 CURRENT_POS.Ventures.setClientStat("Debt",CLIENT_VENTUREBOX,CLIENT_CLIENTBOX,D)
-CURRENT_POS.addMainStat("Value",Debt_To_Pay)
+CURRENT_POS.addMainStat("Value",F_Debt)
 D:=CURRENT_POS.Ventures.getEntryStat("Profits",CLIENT_VENTUREBOX)
-D+=Debt_To_Pay
+D+=F_Debt
 CURRENT_POS.Ventures.setEntryStat("Profits",CLIENT_VENTUREBOX,D)
-CURRENT_POS.TransactionDatabase.createTransaction("Client","Debt Paid",CLIENT_VENTUREBOX,CLIENT_CLIENTBOX,,,,Debt_To_Pay)
+CURRENT_POS.TransactionDatabase.createTransaction("Client","Debt Paid",CLIENT_VENTUREBOX,CLIENT_CLIENTBOX,,,,F_Debt)
 gosub,SELECT_CLIENT
-MsgBox, 64, Transaction Complete,% "Transaction Completed. >$" . Debt_To_Pay . "< Debt removed from >" . CLIENT_CLIENTBOX . "< ."
+MsgBox, 64, Transaction Complete,% "Transaction Completed. >$" . F_Debt . "< Debt removed from >" . CLIENT_CLIENTBOX . "< ."
 }
 }else{
 MsgBox, 16, Invalid Amount, Please enter a valid Amount.

@@ -48,7 +48,7 @@ Gui, 5: Font, S12 Bold underline,
 Gui, 5: Add, Text, x312 y65 w320 h20 +Center vClient_ClientName,
 
 Gui, 5: Font, , 
-Gui, 5: Add, Text, x322 y110 w100 h20 +BackgroundTrans, Current Venture Debt
+Gui, 5: Add, Text, x322 y110 w100 h20 +BackgroundTrans, Current Client Debt
 Gui, 5: Add, Edit, x432 y110 w120 h20 +Center vClient_ClientDebt +ReadOnly, 0
 Gui, 5: Add, Text, x322 y90 w100 h20 +BackgroundTrans, Create Date
 Gui, 5: Add, Edit, x432 y90 w120 h20 +Center vClient_CreateDate +ReadOnly,

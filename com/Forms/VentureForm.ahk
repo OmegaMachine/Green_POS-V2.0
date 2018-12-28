@@ -14,7 +14,7 @@ return
 return	
 }
 ;CURRENT_POS.Ventures.createVenture(NEW_VENTURE_NAME)
-CURRENT_POS.Ventures.createDatabaseEntry(NEW_VENTURE_NAME,"Profits:0")
+CURRENT_POS.Ventures.createDatabaseEntry(NEW_VENTURE_NAME,"Profits:0|ProductValue:0")
 return
 SELECT_VENTURE:
 Gui,10:Submit,NoHide

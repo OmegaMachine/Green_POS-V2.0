@@ -181,6 +181,7 @@ return
 	CURRENT_POS.Database.WriteData(0,"Investments","Main")
 	CURRENT_POS.Database.WriteData(0,"Value","Main")
 	CURRENT_POS.Database.WriteData(0,"SharesSold","Main")
+	CURRENT_POS.Database.WriteData(0,"ProductValue","Main")
 	CURRENT_POS.Database.WriteData(INITIAL_SHAREVALUE,"InitialShareValue","Main")
 	this._Creator:=false
 	Gui,2: Show, w%MAIN_SIZEw% h%MAIN_SIZEh%  x0 y0,% CURRENT_POS.getName() . " " . CURRENT_POS.Main._Name . " - v" . PROGRAM_VERSION 
