@@ -19,6 +19,7 @@ F_Value:=CURRENT_POS.Ventures.getProductStat("Price",PRODUCT_VENTUREBOX,PRODUCT_
 F_Sold := CURRENT_POS.Ventures.getProductStat("UnitsSold",PRODUCT_VENTUREBOX,PRODUCT_PRODUCTBOX)
 F_Profit:=CURRENT_POS.Ventures.getProductStat("Profits",PRODUCT_VENTUREBOX,PRODUCT_PRODUCTBOX)
 F_Sales:=CURRENT_POS.Ventures.getProductStat("Sales",PRODUCT_VENTUREBOX,PRODUCT_PRODUCTBOX)
+F_Units:=CURRENT_POS.Ventures.getProductStat("UnitsSold",PRODUCT_VENTUREBOX,PRODUCT_PRODUCTBOX)
 SetFormat,Float,0.2
 F_PPU:= F_Value / F_Stock
 F_ProfitPerUnit:=F_Profit / F_Sold
@@ -69,6 +70,8 @@ GuiControl,,ProductPurchase_NewPPU,
 GuiControl,,ProductPurchase_NewQuantity,
 F_Quantity:=ProductPurchase_Quantity
 F_Price:=ProductPurchase_Price
+SetFormat,Float,0.2
+F_PPU:=F_Price / F_Quantity
 if (AllowableNum(ProductPurchase_Quantity) && AllowableNum(ProductPurchase_Price)){
 	if(ProductPurchase_Quantity > 0 && ProductPurchase_Price <= CURRENT_POS.getMainStat("Value")){
 MsgBox, 36, Add Debt,% "Are you sure you would like to Purchase  >" . ProductPurchase_Quantity . "< >" . PRODUCT_PRODUCTBOX . "< ( " . PRODUCT_VENTUREBOX . " ) for >$" . ProductPurchase_Price . "< ?"
@@ -101,7 +104,7 @@ CURRENT_POS.Ventures.setEntryStat("ProductValue",PRODUCT_VENTUREBOX,D)
 
 CURRENT_POS.subMainStat("Value",F_Price)
 CURRENT_POS.addMainStat("ProductValue",F_Price)
-CURRENT_POS.TransactionDatabase.createTransaction("Product","Purchased",PRODUCT_VENTUREBOX,,PRODUCT_PRODUCTBOX,F_Quantity)
+CURRENT_POS.TransactionDatabase.createTransaction("Product","Purchased",PRODUCT_VENTUREBOX,,PRODUCT_PRODUCTBOX,F_Quantity,F_PPU,F_Price)
 gosub,SELECT_PRODUCT
 MsgBox, 64, Transaction Complete,% "Transaction Completed. >" . F_Quantity . "< >" . PRODUCT_PRODUCTBOX . "< ( " . PRODUCT_VENTUREBOX . " ) purchased for >$" . F_Price . "<."
 }

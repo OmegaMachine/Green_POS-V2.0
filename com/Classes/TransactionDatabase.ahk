@@ -92,7 +92,7 @@ createTransaction(_Type,_SubType := "-",_Venture := "-",_Account := "-",_Product
 	_Date := Get_InternetTime()
 	_AUTH := CURRENT_POS.Authenticator.Authenticated()
 	_NewBlackBook := CURRENT_POS.Database.ReadData("Value","Main",0)
-
+	_NewBlackBookProfit := CURRENT_POS.Database.ReadData("Value","Main",0) - CURRENT_POS.Database.ReadData("Investments","Main",0)
 	if(_Venture != "-"){
 	_NewVenture := CURRENT_POS.Ventures.getEntryStat("Profits",_Venture)
 	}else{
@@ -114,7 +114,7 @@ _NewVenture := "-"
 	}
 	
 	
-	Transactionf:=_Type . "|" . _Date . "|" . _SubType . "|" . _Venture . "|" . _Account . "|" . _Product . "|" . _Quantity . "|" . _Unit . "|" . _Total . "|" . _NewVenture . "|" . _NewBlackBook . "|" . _Memo . "|" . _AUTH
+	Transactionf:=_Type . "|" . _Date . "|" . _SubType . "|" . _Venture . "|" . _Account . "|" . _Product . "|" . _Quantity . "|" . _Unit . "|" . _Total . "|" . _NewVenture . "|" . _NewBlackBook . "|" . _NewBlackBookProfit . "|" . _Memo . "|" . _AUTH
 	this.WriteData(Transactionf,FreeSlotd,"Transaction")
 	if(MEMO_TO_ADD){
 		MEMO_TO_ADD:=false
@@ -130,7 +130,7 @@ getTransaction(IDX){
 		return false
 	}
 	StringSplit,Parts,ZS,|
-	ZZS:= new Transaction(Parts1,Parts2,Parts3,Parts4,Parts5,Parts6,Parts7,Parts8,Parts9,Parts10,Parts11,Parts12,Parts13)
+	ZZS:= new Transaction(Parts1,Parts2,Parts3,Parts4,Parts5,Parts6,Parts7,Parts8,Parts9,Parts10,Parts11,Parts12,Parts13,Parts14)
 	return ZZS
 }
 ifSlotIsType(Slot){

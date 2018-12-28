@@ -66,7 +66,8 @@ Gui,8:Submit,NoHide
 F_Quantity:=Sales_Quantity
 F_Price:=Sales_Price
 F_isCash:=CashDebt1
-		H:=F_Quantity * (CURRENT_POS.Ventures.getProductStat("Price",SALES_VENTUREBOX,SALES_PRODUCTBOX)) / (CURRENT_POS.Ventures.getProductStat("Quantity",SALES_VENTUREBOX,SALES_PRODUCTBOX))
+F_PPUR:=CURRENT_POS.Ventures.getProductStat("Price",SALES_VENTUREBOX,SALES_PRODUCTBOX) / CURRENT_POS.Ventures.getProductStat("Quantity",SALES_VENTUREBOX,SALES_PRODUCTBOX)
+H:=F_Quantity * (CURRENT_POS.Ventures.getProductStat("Price",SALES_VENTUREBOX,SALES_PRODUCTBOX)) / (CURRENT_POS.Ventures.getProductStat("Quantity",SALES_VENTUREBOX,SALES_PRODUCTBOX))
 MsgBox, 36, Add Debt,% "Are you sure you would like to sell >" . F_Quantity . "< >" . SALES_PRODUCTBOX . "< ( " . SALES_VENTUREBOX . " ) for >$" . F_Price . "< too >" . SALES_CLIENTBOX . "< ?"
 CURRENT_POS.TransactionDatabas
 	IfMsgBox,Yes
@@ -104,7 +105,7 @@ D+=F_Quantity
 CURRENT_POS.Ventures.setProductStat("UnitsSold",SALES_VENTUREBOX,SALES_PRODUCTBOX,D)
 
 D:=CURRENT_POS.Ventures.getProductStat("Sales",SALES_VENTUREBOX,SALES_PRODUCTBOX)
-D+=F_Quantity
+D+=1
 CURRENT_POS.Ventures.setProductStat("Sales",SALES_VENTUREBOX,SALES_PRODUCTBOX,D)
 
 if(F_isCash){
@@ -128,10 +129,10 @@ GuiControl,,Sales_Price,
 
 if(F_isCash){
 	MsgBox, 64, Transaction Complete,% "Transaction Completed. >" . F_Quantity . "< >" . SALES_PRODUCTBOX . "< ( " . SALES_VENTUREBOX . " ) sold for >$" . F_Price . "< too >" . SALES_CLIENTBOX . "<."
-	CURRENT_POS.TransactionDatabase.createTransaction("Sale","Cash",SALES_VENTUREBOX,SALES_CLIENTBOX,SALES_PRODUCTBOX,F_Quantity,,F_Price)
+	CURRENT_POS.TransactionDatabase.createTransaction("Sale","Cash",SALES_VENTUREBOX,SALES_CLIENTBOX,SALES_PRODUCTBOX,F_Quantity,F_PPUR,F_Price)
 }else{
 	MsgBox, 64, Transaction Complete,% "Transaction Completed. >" . F_Quantity . "< >" . SALES_PRODUCTBOX . "< ( " . SALES_VENTUREBOX . " ) fronted for >$" . F_Price . "< too >" . SALES_CLIENTBOX . "<."
-CURRENT_POS.TransactionDatabase.createTransaction("Sale","Debt",SALES_VENTUREBOX,SALES_CLIENTBOX,SALES_PRODUCTBOX,F_Quantity,,F_Price)
+CURRENT_POS.TransactionDatabase.createTransaction("Sale","Debt",SALES_VENTUREBOX,SALES_CLIENTBOX,SALES_PRODUCTBOX,F_Quantity,F_PPUR,F_Price)
 
 }
 }else{
