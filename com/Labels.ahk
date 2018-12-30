@@ -92,6 +92,14 @@ if(CURRENT_POS.Authenticator.Authenticated()){
 CURRENT_POS.Authenticator.requestAuthentication()
 }
 return
+MODULE_OVERVIEW:
+if(CURRENT_POS.Authenticator.Authenticated()){
+	CURRENT_POS.Overview.openInterface()
+}else{
+	CURRENT_POS.Logger.Log("Error","Please Authenticate First",MESSAGE_SEP)
+CURRENT_POS.Authenticator.requestAuthentication()
+}
+return
 MODULE_PRODUCTS:
 if(CURRENT_POS.Authenticator.Authenticated()){
 	CURRENT_POS.Products.openInterface()

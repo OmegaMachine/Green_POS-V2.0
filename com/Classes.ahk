@@ -7,12 +7,14 @@
 #Include com\Classes\Interfaces\MainInterface.ahk ;2
 #Include com\Classes\Interfaces\AuthenticationInterface.ahk ;3
 #Include com\Classes\Interfaces\InvestorInterface.ahk ;4
+#Include com\Classes\Interfaces\OverviewInterface.ahk ;4
 #Include com\Forms\InvestorForm.ahk ;4
 #Include com\Forms\VentureForm.ahk ;4
 #Include com\Forms\ClientForm.ahk ;4
 #Include com\Forms\ProductForm.ahk ;4
 #Include com\Forms\TransactionForm.ahk ;4
 #Include com\Forms\SalesForm.ahk ;4
+#Include com\Forms\OverviewForm.ahk ;4
 #Include com\Classes\Interfaces\ClientInterface.ahk ;5
 #Include com\Classes\Interfaces\LoggerInterface.ahk ;6
 #Include com\Classes\Interfaces\ProductInterface.ahk ;7

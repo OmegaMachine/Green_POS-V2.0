@@ -33,6 +33,7 @@ createInterface(){
 		Menu, AccountMenu, Add, &Settings , Settings
 		Menu, MyMenuBar, Add, &Account, :AccountMenu
 		
+		Menu, ModulesMenu, Add, &Overview ,MODULE_OVERVIEW
 		Menu, ModulesMenu, Add, &Investor Explorer ,MODULE_INVESTORS
 		Menu, ModulesMenu, Add, &Client Explorer,MODULE_CLIENT
 		Menu, ModulesMenu, Add, &Product Explorer,MODULE_PRODUCTS

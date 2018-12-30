@@ -34,6 +34,7 @@ CURRENT_POS.Ventures := New VentureInterface(VENTURES_GUI_NAME)
 CURRENT_POS.Transactions := New TransactionInterface(TRANSACTIONS_GUI_NAME)
 CURRENT_POS.Settings := New SettingsInterface(SETTINGS_GUI_NAME)
 CURRENT_POS.Memos := New MemoInterface(MEMO_GUI_NAME)
+CURRENT_POS.Overview := New OverviewInterface(OVERVIEW_GUI_NAME)
 ;CURRENT_POS.addMainStat("SharesSold",1)
 
 

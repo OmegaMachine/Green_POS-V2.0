@@ -106,6 +106,14 @@ if(A_LoopField){
 }
 return LengthX
 }
+
+_ListRandom(ListX){
+ListXArray := StrSplit(ListX, "|")
+Random,Z,0,% ListXArray.MaxIndex()
+return ListXArray[Z]
+}
+
+
 _InList(ListX,Item,Delim:="|"){
 Loop,Parse,ListX,%Delim%
 {
